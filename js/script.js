@@ -126,6 +126,20 @@ if (bbMenuBtn && menuOverlay) {
   });
 }
 
+// Telefon popup aç/kapat
+const bbCallBtn = document.getElementById('bbCallBtn');
+if (bbCallBtn) {
+  bbCallBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    bbCallBtn.classList.toggle('active');
+  });
+
+  // dışarı tıklayınca kapat
+  document.addEventListener('click', () => {
+    bbCallBtn.classList.remove('active');
+  });
+}
+
 
 // Language popover
 if (bbLangBtn && bbLangPopup) {
