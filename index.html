@@ -6,8 +6,8 @@
   <title>Bilkur Madencilik – Yenilikçi Teknoloji, Güçlü Çözümler</title>
   <meta name="description" content="Bilkur Madencilik olarak müşteri memnuniyetini her zaman ön planda tutuyoruz. Uzman ekibimiz size özel çözümler sunmak için burada.">
   <link rel="stylesheet" href="css/style.css"/>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
   <!-- PRELOADER -->
@@ -118,12 +118,10 @@
 
   <div class="carousel-controls">
     <button class="carousel-btn" id="prevBtn">
-      <svg class="btn-circle" viewBox="0 0 71.5 71.5"><circle cx="35.75" cy="35.75" r="35"/></svg>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      <i class="fas fa-chevron-left"></i>
     </button>
     <button class="carousel-btn" id="nextBtn">
-      <svg class="btn-circle" viewBox="0 0 71.5 71.5"><circle cx="35.75" cy="35.75" r="35"/></svg>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+      <i class="fas fa-chevron-right"></i>
     </button>
   </div>
 
@@ -332,14 +330,10 @@
 
     <div class="uretim-navigation-controls">
       <button id="uretim-prev-btn" class="uretim-nav-button" aria-label="Önceki">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 5l-6 6h12l-6-6z" stroke="currentColor" stroke-width="1.5"/>
-        </svg>
+        <i class="fas fa-chevron-left"></i>
       </button>
       <button id="uretim-next-btn" class="uretim-nav-button" aria-label="Sonraki">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 19l6-6H6l6 6z" stroke="currentColor" stroke-width="1.5"/>
-        </svg>
+        <i class="fas fa-chevron-right"></i>
       </button>
     </div>
     
@@ -371,7 +365,301 @@
   </main>
   
 
-  
+  <main class="urunler-main">
+    <div class="urunler-split-content">
+      <div class="urunler-split"></div>
+    </div>
+
+    <!-- ÜRÜN KATEGORİLERİ -->
+    <section class="urunler-products">
+      <div class="urunler-gradient-bg"></div>
+
+      <div class="urunler-wrapper">
+        <div class="urunler-gradient-image">
+          <img src="https://www.sarmakina.com.tr/wp-content/themes/sarmakina/assets/image/static/prod-bg.png" alt="Sar Makina | Anasayfa">
+        </div>
+
+        <div class="urunler-select">
+          <div class="urunler-container">
+            <small>ÜRÜNLER</small>
+
+            <ul class="urunler-tabs">
+              <li class="urunler-tab active" data-id="1">
+                <div class="urunler-tab-label">ÜRÜNLERİMİZ</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="urunler-tabdesc">
+          <!-- MAKİNE -->
+          <div class="urunler-desc active" data-box-id="1">
+            <div class="urunler-content">
+              <div class="urunler-list-col">
+                <div class="urunler-nav-controls">
+                  <div class="urunler-nav-btn urunler-prev-btn" id="machine-prev">
+                    <div class="urunler-nav-icon">
+                      <svg viewBox="0 0 71.5 71.5">
+                        <circle class="urunler-main-circle" cx="35.75" cy="35.75" r="35"></circle>
+                        <circle class="urunler-fillable" cx="35.75" cy="35.75" r="35"></circle>
+                      </svg>
+                      <i class="fas fa-chevron-left"></i>
+                    </div>
+                  </div>
+                  <div class="urunler-nav-btn urunler-next-btn" id="machine-next">
+                    <div class="urunler-nav-icon">
+                      <svg viewBox="0 0 71.5 71.5">
+                        <circle class="urunler-main-circle" cx="35.75" cy="35.75" r="35"></circle>
+                        <circle class="urunler-fillable" cx="35.75" cy="35.75" r="35"></circle>
+                      </svg>
+                      <i class="fas fa-chevron-right"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="urunler-product-list" id="machine-carousel">
+                  <div class="urunler-product-item active">
+                    <a class="urunler-product-link" href="#">
+                      <div class="urunler-product-title">Ürün Adı Buraya</div>
+                      <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                  <div class="urunler-product-item">
+                    <a class="urunler-product-link" href="#">
+                      <div class="urunler-product-title">Ürün Adı Buraya</div>
+                      <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                  <div class="urunler-product-item">
+                    <a class="urunler-product-link" href="#">
+                      <div class="urunler-product-title">Ürün Adı Buraya</div>
+                      <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                  <div class="urunler-product-item">
+                    <a class="urunler-product-link" href="#">
+                      <div class="urunler-product-title">Ürün Adı Buraya</div>
+                      <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                  <div class="urunler-product-item">
+                    <a class="urunler-product-link" href="#">
+                      <div class="urunler-product-title">Ürün Adı Buraya</div>
+                      <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                  <div class="urunler-product-item">
+                    <a class="urunler-product-link" href="#">
+                      <div class="urunler-product-title">Ürün Adı Buraya</div>
+                      <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                  <div class="urunler-product-item">
+                    <a class="urunler-product-link" href="#">
+                      <div class="urunler-product-title">Ürün Adı Buraya</div>
+                      <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="urunler-image-col">
+                <div class="urunler-image-carousel" id="machine-images">
+                  <div class="urunler-image-slide active">
+                    <a class="urunler-image-link" href="#">
+                      <img src="https://www.sarmakina.com.tr/wp-content/uploads/2024/04/SBM-630-kopya.png" alt="Büküm Makineleri">
+                    </a>
+                  </div>
+                  <div class="urunler-image-slide">
+                    <a class="urunler-image-link" href="#">
+                      <img src="https://www.sarmakina.com.tr/wp-content/uploads/2024/04/SCM-630-4.png" alt="Çözücüler">
+                    </a>
+                  </div>
+                  <div class="urunler-image-slide">
+                    <a class="urunler-image-link" href="#">
+                      <img src="https://www.sarmakina.com.tr/wp-content/uploads/2024/03/Backtwist-1-scaled.jpg" alt="Backtwists">
+                    </a>
+                  </div>
+                  <div class="urunler-image-slide">
+                    <a class="urunler-image-link" href="#">
+                      <img src="https://www.sarmakina.com.tr/wp-content/uploads/2024/03/SAM-D-Rewinding-.png" alt="Tel Aktarma Hatları">
+                    </a>
+                  </div>
+                  <div class="urunler-image-slide">
+                    <a class="urunler-image-link" href="#">
+                      <img src="https://www.sarmakina.com.tr/wp-content/uploads/2024/04/automatic.png" alt="Otomatik Bobin Sarma Makineleri">
+                    </a>
+                  </div>
+                  <div class="urunler-image-slide">
+                    <a class="urunler-image-link" href="#">
+                      <img src="https://www.sarmakina.com.tr/wp-content/uploads/2024/03/electronic.jpg" alt="Elektrolitik Tel Kaplama Hatları">
+                    </a>
+                  </div>
+                  <div class="urunler-image-slide">
+                    <a class="urunler-image-link" href="#">
+                      <img src="https://www.sarmakina.com.tr/wp-content/uploads/2024/04/s.png" alt="Emülsiyon Filtreleme ve Soğutma Sistemleri">
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HABERLER -->
+    <section class="urunler-news">
+      <div class="urunler-gradient-bg"></div>
+
+      <div class="urunler-container">
+        <div class="urunler-wrapper urunler-wrapper--news">
+          <div class="urunler-top-field">
+            <div class="urunler-carousel-ctrl">
+              <div class="urunler-carousel-nav">
+                <div class="urunler-nav-btn urunler-prev-btn" id="news-prev">
+                  <div class="urunler-nav-icon">
+                    <svg viewBox="0 0 71.5 71.5">
+                      <circle class="urunler-main-circle" cx="35.75" cy="35.75" r="35"></circle>
+                      <circle class="urunler-fillable" cx="35.75" cy="35.75" r="35"></circle>
+                    </svg>
+                    <i class="fas fa-chevron-left"></i>
+                  </div>
+                </div>
+
+                <div class="urunler-title-field">
+                  <h3 class="urunler-news-title"><strong>SARMAKİNA</strong>'dan Haberler</h3>
+                </div>
+
+                <div class="urunler-nav-btn urunler-next-btn" id="news-next">
+                  <div class="urunler-nav-icon">
+                    <svg viewBox="0 0 71.5 71.5">
+                      <circle class="urunler-main-circle" cx="35.75" cy="35.75" r="35"></circle>
+                      <circle class="urunler-fillable" cx="35.75" cy="35.75" r="35"></circle>
+                    </svg>
+                    <i class="fas fa-chevron-right"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="urunler-news-wrap">
+            <div class="urunler-news-carousel" id="news-carousel">
+              <div class="urunler-news-item">
+                <div class="urunler-blog-item">
+                  <div class="urunler-blog-content">
+                    <div class="urunler-blog-image-field">
+                      <div class="urunler-blog-btn-field">
+                        <div class="urunler-blog-btn">
+                          <i class="fas fa-arrow-right"></i>
+                        </div>
+                      </div>
+                      <a class="urunler-block" href="#">
+                        <div class="urunler-gradient-overlay"></div>
+                        <div class="urunler-blog-image">
+                          <img src="https://www.sarmakina.com.tr/wp-content/uploads/2025/03/duyuru_yn.jpg" alt="2024 GENEL KURUL DUYURUSU">
+                        </div>
+                      </a>
+                    </div>
+                    <div class="urunler-blog-text">
+                      <div class="urunler-title-field">
+                        <a class="urunler-blog-text-content" href="#">
+                          <div class="urunler-title">2024 GENEL KURUL DUYURUSU</div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="urunler-news-item">
+                <div class="urunler-blog-item">
+                  <div class="urunler-blog-content">
+                    <div class="urunler-blog-image-field">
+                      <div class="urunler-blog-btn-field">
+                        <div class="urunler-blog-btn">
+                          <i class="fas fa-arrow-right"></i>
+                        </div>
+                      </div>
+                      <a class="urunler-block" href="#">
+                        <div class="urunler-gradient-overlay"></div>
+                        <div class="urunler-blog-image">
+                          <img src="https://www.sarmakina.com.tr/wp-content/uploads/2024/12/Son.png" alt="Gelecek Fuar: Interwire 2025 Atlanta-A.B.D">
+                        </div>
+                      </a>
+                    </div>
+                    <div class="urunler-blog-text">
+                      <div class="urunler-title-field">
+                        <a class="urunler-blog-text-content" href="#">
+                          <div class="urunler-title">Gelecek Fuar: Interwire 2025 Atlanta-A.B.D</div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="urunler-news-item">
+                <div class="urunler-blog-item">
+                  <div class="urunler-blog-content">
+                    <div class="urunler-blog-image-field">
+                      <div class="urunler-blog-btn-field">
+                        <div class="urunler-blog-btn">
+                          <i class="fas fa-arrow-right"></i>
+                        </div>
+                      </div>
+                      <a class="urunler-block" href="#">
+                        <div class="urunler-gradient-overlay"></div>
+                        <div class="urunler-blog-image">
+                          <img src="https://www.sarmakina.com.tr/wp-content/uploads/2024/12/Wire-2024.jpeg" alt="Wire 2024 Fuar Sonrası">
+                        </div>
+                      </a>
+                    </div>
+                    <div class="urunler-blog-text">
+                      <div class="urunler-title-field">
+                        <a class="urunler-blog-text-content" href="#">
+                          <div class="urunler-title">Wire 2024 Fuar Sonrası</div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="urunler-news-item">
+                <div class="urunler-blog-item">
+                  <div class="urunler-blog-content">
+                    <div class="urunler-blog-image-field">
+                      <div class="urunler-blog-btn-field">
+                        <div class="urunler-blog-btn">
+                          <i class="fas fa-arrow-right"></i>
+                        </div>
+                      </div>
+                      <a class="urunler-block" href="#">
+                        <div class="urunler-gradient-overlay"></div>
+                        <div class="urunler-blog-image">
+                          <img src="https://www.sarmakina.com.tr/wp-content/uploads/2024/03/sarhaber2.jpg" alt="WIRE 2024 DUSSELDORF">
+                        </div>
+                      </a>
+                    </div>
+                    <div class="urunler-blog-text">
+                      <div class="urunler-title-field">
+                        <a class="urunler-blog-text-content" href="#">
+                          <div class="urunler-title">WIRE 2024 DUSSELDORF<br>Uluslararası Tel ve Kablo Ticaret Fuarı</div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /.urunler-news-carousel -->
+          </div><!-- /.urunler-news-wrap -->
+        </div>
+      </div>
+    </section>
+  </main>
 
   <script src="js/script.js"></script>
 </body>
