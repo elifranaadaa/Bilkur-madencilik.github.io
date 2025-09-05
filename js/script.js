@@ -1,3 +1,5 @@
+const isUrunlerMobile = () => window.matchMedia('(max-width:1024px)').matches;
+
 document.querySelectorAll('.hero-video').forEach(el => el.style.transform = 'none');
 
 // ==== SLIDER (HTML kaynaklı metin) ====
