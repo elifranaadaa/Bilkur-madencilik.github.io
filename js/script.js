@@ -441,3 +441,166 @@ if (statNumbers.length) {
     });
   });
 })();
+
+
+/* === ÜRÜNLER (urunler-*) TAB & KARUSELLER === */
+(() => {
+  // --- Tablar ---
+  const tabs = Array.from(document.querySelectorAll('.urunler-tab'));
+  const descBoxes = Array.from(document.querySelectorAll('.urunler-desc'));
+  if (tabs.length && descBoxes.length) {
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const id = tab.getAttribute('data-id');
+        tabs.forEach(t => t.classList.toggle('active', t === tab));
+        descBoxes.forEach(box => box.classList.toggle('active', box.getAttribute('data-box-id') === id));
+      });
+    });
+  }
+
+
+  
+  // --- Ortak ürün karuseli bağlayıcı ---  (ÜRÜNLER – SOLDAN KAYAN AKTİF SLOT)
+function attachProductCarousel(prefix, options = {}) {
+  const listEl   = document.getElementById(`${prefix}-carousel`);
+  const imagesEl = document.getElementById(`${prefix}-images`);
+  const prevBtn  = document.getElementById(`${prefix}-prev`);
+  const nextBtn  = document.getElementById(`${prefix}-next`);
+  if (!listEl || !imagesEl) return;
+
+  const items  = Array.from(listEl.querySelectorAll('.urunler-product-item'));
+  const slides = Array.from(imagesEl.querySelectorAll('.urunler-image-slide'));
+  if (!items.length || !slides.length) return;
+
+  const n = Math.min(items.length, slides.length);
+  const activeFromDom = items.findIndex(el => el.classList.contains('active'));
+
+  const ds = (imagesEl.dataset.startIndex || listEl.dataset.startIndex || '').toString().trim().toLowerCase();
+  const optStart = options.startIndex;
+
+  function norm(i){ return ((i % n) + n) % n; }
+
+  let current;
+  if (optStart === 'middle' || ds === 'middle' || ds === 'center') {
+    current = Math.floor((n - 1) / 2);
+  } else if (Number.isFinite(optStart)) {
+    current = norm(optStart);
+  } else if (!Number.isNaN(parseInt(ds, 10))) {
+    current = norm(parseInt(ds, 10));
+  } else if (activeFromDom >= 0) {
+    current = activeFromDom;
+  } else {
+    current = Math.floor((n - 1) / 2);
+  }
+
+
+  // ==== AUTOPLAY AYARLARI ====
+  const intervalFromAttr =
+    Number(imagesEl.dataset.interval || listEl.dataset.interval || 0) || undefined;
+  const AUTO_PLAY   = options.auto !== false; // default: true
+  const AUTO_INT    = Number(options.interval || intervalFromAttr || 5000); // ms
+  let autoTimer     = null;
+
+  function startAuto(){
+    if (!AUTO_PLAY) return;
+    stopAuto();
+    autoTimer = setInterval(() => setActive(current + 1, /*fromAuto=*/true), AUTO_INT);
+  }
+  function stopAuto(){
+    if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+  }
+  function restartAuto(){
+    stopAuto(); startAuto();
+  }
+
+  // ==== LİSTEYİ ORTAYA HİZALA ====
+  function updateListPosition() {
+    const viewport = listEl.parentElement; // .urunler-list-col
+    if (!viewport) return;
+
+    const CENTER_OFFSET =
+      parseInt(getComputedStyle(viewport).getPropertyValue('--urunler-center-offset') || '0', 10) || 0;
+
+    const slotY = (viewport.clientHeight / 2) + CENTER_OFFSET;
+    const activeItem = items[current];
+    if (!activeItem) return;
+
+    const itemCenter  = activeItem.offsetTop + (activeItem.offsetHeight / 2);
+    const firstCenter = items[0].offsetTop + (items[0].offsetHeight / 2);
+    const last        = items[items.length - 1];
+    const lastCenter  = last.offsetTop + (last.offsetHeight / 2);
+
+    const maxY = slotY - firstCenter;
+    const minY = slotY - lastCenter;
+
+    let y = slotY - itemCenter;
+    if (y > maxY) y = maxY;
+    if (y < minY) y = minY;
+
+    listEl.style.transform = `translateY(${Math.round(y)}px)`;
+  }
+
+  function setActive(i, fromAuto = false) {
+    const n = Math.min(items.length, slides.length);
+    current = ((i % n) + n) % n;
+    items.forEach((el, idx) => el.classList.toggle('active', idx === current));
+    slides.forEach((el, idx) => el.classList.toggle('active', idx === current));
+    updateListPosition();
+    if (!fromAuto) restartAuto(); // kullanıcı etkileşiminde sayaç sıfırla
+  }
+
+  // Tıklama
+  items.forEach((el, idx) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      setActive(idx);
+    });
+  });
+
+  // Oklar
+  if (prevBtn) prevBtn.addEventListener('click', (e) => { e.preventDefault(); setActive(current - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', (e) => { e.preventDefault(); setActive(current + 1); });
+
+  // Hover'da durdur / çıkınca başlat (hem liste hem görsel alanı)
+  const viewport = listEl.parentElement || listEl;
+  [viewport, imagesEl].forEach(el => {
+    el.addEventListener('mouseenter', stopAuto);
+    el.addEventListener('mouseleave', startAuto);
+  });
+
+  // Sekme görünmez olunca durdur, geri gelince başlat
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopAuto(); else startAuto();
+  });
+
+  // Başlat
+  setActive(current);
+  startAuto && startAuto();
+}
+
+
+attachProductCarousel('machine', { interval: 4000, startIndex: 'middle' });
+attachProductCarousel('pulley',  { interval: 4000, startIndex: 'middle' });
+
+  // --- Haberler karuseli ---
+  (function initNewsCarousel() {
+    const wrap = document.getElementById('news-carousel');
+    const prev = document.getElementById('news-prev');
+    const next = document.getElementById('news-next');
+    if (!wrap) return;
+
+    // Adım: kart genişliği + gap kadar kaydır
+    const sampleItem = wrap.querySelector('.urunler-news-item') || wrap.firstElementChild;
+    // Gap okumayı dener, yoksa 40px (CSS'te gap:40px) alır
+    const styles = window.getComputedStyle(wrap);
+    const gap = parseInt(styles.columnGap || styles.gap || '40', 10) || 40;
+    const step = sampleItem ? (sampleItem.getBoundingClientRect().width + gap) : Math.max(320, wrap.clientWidth * 0.8);
+
+    function scrollByStep(dir) {
+      wrap.scrollBy({ left: dir * step, behavior: 'smooth' });
+    }
+
+    if (prev) prev.addEventListener('click', (e) => { e.preventDefault(); scrollByStep(-1); });
+    if (next) next.addEventListener('click', (e) => { e.preventDefault(); scrollByStep(1); });
+  })();
+})();
