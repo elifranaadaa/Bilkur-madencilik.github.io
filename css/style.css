@@ -1521,6 +1521,7 @@ body.menu-open{overflow:hidden}
   .urunler-news-title{ font-size: 36px !important; }
 }
 @media (max-width: 767px){
-  .urunler-carousel-nav{ gap: 15px !important; }
+  .urunler-carousel-nav{ gap: 10px !important; }
   .urunler-news-title{ font-size: 28px !important; }
 }
+
