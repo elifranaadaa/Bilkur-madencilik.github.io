@@ -1450,3 +1450,77 @@ body.menu-open{overflow:hidden}
   .urunler-news{padding:60px 0}
   .urunler-carousel-ctrl{flex-direction:column;gap:30px}
 }
+
+
+
+/* ===================== */
+/* ÜRÜNLER + HABERLER Responsive Fixes */
+/* ===================== */
+
+/* —— ÜRÜNLER: tablet ve aşağısı tek kolona geçsin, boşluklar toparlansın —— */
+@media (max-width: 1024px) {
+  .urunler-content{
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+  .urunler-list-col{
+    border-left: 0 !important;
+    --urunler-active-slot: 110px; /* dursun, mobilde transform'ı kapatacağız */
+  }
+  .urunler-product-link{
+    padding-left: 0 !important;
+    justify-content: center !important;
+  }
+  .urunler-product-title{
+    text-align: center !important;
+  }
+
+  /* Dikey ok grubu: yatay hizaya al, ortala */
+  .urunler-nav-controls{
+    position: static !important;
+    transform: none !important;
+    margin: 10px auto 0 !important;
+    justify-content: center !important;
+  }
+
+  /* Ürün görsel alanı yüksekliği ekranla ölçeklensin */
+  .urunler-image-carousel{
+    height: clamp(260px, 56vw, 440px) !important;
+  }
+}
+
+/* —— ÜRÜNLER: küçük telefon — listedeki inline transform sorununu kapat —— */
+@media (max-width:480px){
+  /* JS’in inline transform’unu etkisiz bırakır */
+  #machine-carousel,
+  #pulley-carousel{
+    transform: none !important;
+  }
+  .urunler-blog-image{
+    height: 300px;}
+
+    .urunler-wrapper--news {
+    gap: 20px;}
+}
+
+/* —— HABERLER: kart genişlikleri ve scroll-snap —— */
+.urunler-news-carousel{
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-inline: 20px;
+}
+.urunler-news-item{
+  /* Masaüstünde 450px idi, mobilde daralsın */
+  flex: 0 0 clamp(260px, 75vw, 420px);
+  scroll-snap-align: start;
+}
+
+/* Başlık ve oklar arası boşluklar küçülsün */
+@media (max-width: 1024px){
+  .urunler-carousel-nav{ gap: 32px !important; }
+  .urunler-news-title{ font-size: 36px !important; }
+}
+@media (max-width: 767px){
+  .urunler-carousel-nav{ gap: 15px !important; }
+  .urunler-news-title{ font-size: 28px !important; }
+}
