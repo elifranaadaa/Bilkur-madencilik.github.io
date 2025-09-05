@@ -181,12 +181,14 @@ body{
   height: 100%;
   opacity: 0;
   transition: opacity .7s ease;
+  transform: none !important; /* Transform kaldır */
 }
 
 .slide.active {
-  position: relative; /* Aktif slide relative olsun ki yüksekliği belirlesin */
+  position: relative;
   opacity: 1;
   z-index: 1;
+  transform: none !important; /* Transform kaldır */
 }
 .slide img.hero-video{width:100%;height:100%;object-fit:cover}
 
@@ -195,7 +197,7 @@ body{
 /* ===== Hero ===== */
 .hero {
   position: relative;
-  height: auto; /* İçeriğe göre otomatik yükseklik */
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -203,17 +205,21 @@ body{
 }
 
 .hero-bg {
-  position: relative; /* absolute yerine relative */
+  position: relative;
   z-index: -2;
   width: 100%;
-  height: auto; /* Otomatik yükseklik */
+  height: auto;
+  transform: none !important; /* Transform kaldır */
 }
 .hero-video {
   width: 100%;
-  height: auto; /* Doğal yükseklik */
+  height: auto;
   display: block;
   max-width: 100%;
-  object-fit: contain; /* Tüm içerik görünsün */
+  object-fit: cover;
+  transform: none !important; /* Parallax transform'u iptal et */
+  will-change: auto;
+  position: relative; /* Fixed positioning kaldır */
 }
 
 /* Hero overlay artık absolute değil */
@@ -236,6 +242,13 @@ body{
 .hero-text::before{content:'';position:absolute;left:0;top:-10px;width:3px;height:80px;background:var(--primary-color)}
 .hero-title{font-size:64px;font-weight:700;line-height:1.1;margin-bottom:30px;opacity:0;transform:translateY(20px);animation:fadeInUp .8s ease forwards .5s}
 .hero-description{font-size:18px;color:var(--text-light);font-weight:500;opacity:0;transform:translateY(20px);animation:fadeInUp .8s ease forwards .7s}
+/* JavaScript'teki parallax kodunu CSS ile iptal et */
+.hero-video,
+.slide img,
+.slide video {
+  transform: translate3d(0, 0, 0) !important; /* Tüm transform'ları sıfırla */
+  transition: none !important; /* Geçiş efektlerini kapat */
+}
 @keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
 
 /* Socials */
@@ -417,6 +430,14 @@ body.menu-open{overflow:hidden}
     display: flex;
     gap: 15px;
   }
+
+  .header-cta {
+    display: none !important;
+  }
+
+  .header-left{
+    margin-left: 0px;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -437,6 +458,14 @@ body.menu-open{overflow:hidden}
     display: flex;
     gap: 15px;
   }
+
+    .header-cta {
+    display: none !important;
+  }
+
+  .header-left{
+    margin-left: 0px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -454,6 +483,14 @@ body.menu-open{overflow:hidden}
     display: flex;
     gap: 15px;
   }
+
+    .header-cta {
+    display: none !important;
+  }
+
+  .header-left{
+    margin-left: 0px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -462,6 +499,10 @@ body.menu-open{overflow:hidden}
   }
   
   .carousel-controls {
+    display: none !important;
+  }
+
+    .header-cta {
     display: none !important;
   }
 }
