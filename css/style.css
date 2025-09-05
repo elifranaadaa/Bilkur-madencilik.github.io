@@ -2,14 +2,15 @@
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
   --primary-color:#FAB02A;
-  --primary-dark:#13171F;
+  --primary-dark:#17181a;
   --text-light:#B0B0B0;
   --text-dark:#414243;
   --white:#FFFCF2;
-  --gradient-bg:linear-gradient(180deg, rgba(19,23,31,.95) 0%, rgba(19,23,31,.30) 49.48%, #13171F 100%);
+  --gradient-bg:linear-gradient(180deg, rgba(11, 11, 12, 0.95) 0%, rgba(16, 17, 18, 0.3) 49.48%, #111112 100%);
   --shadow-header:rgba(0,0,0,.2) 0 10px 30px -20px;
   --urunler-accent: #9ca3af;   /* gri vurgu */
-  --urunler-bg: #1b1d21; 
+  --urunler-bg: #1a1a1b; 
+  --footer-bg: #141414; 
 }
 :root{ --mheader: 82px; }  /* mobil/tablet üst şerit yüksekliği */
 body{
@@ -1625,3 +1626,348 @@ display: none;
   padding-left:0;
 }
 }
+
+
+    :root {
+      --bg: #0f0f10;
+      --card: #141416;
+      --muted: #252525;
+      --line: rgba(255, 255, 255, 0.08);
+      --text: #eaeaea;
+      --soft: rgba(255, 255, 255, 0.55);
+      --brand: #9db6ff;
+      --primary-color: #FAB02A;
+      --radius: 20px;
+      --radius-sm: 10px;
+      --footer-bg: #141414;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .footer {
+      width: 100%;
+      color: var(--text);
+      background: transparent;
+      padding: 60px;
+      background: var(--footer-bg);
+    }
+
+    .footer-top .footer-card {
+      max-width: 1880px;
+      margin: 0 auto;
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .footer-notch {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: grid;
+      place-items: center;
+      z-index: 3;
+      top: -5px;
+    }
+
+    .footer-notch img {
+      max-width: 330px;
+      height: auto;
+      display: block;
+    }
+
+    /* Sol kutu - Logo ve açıklama */
+    .footer-left {
+      padding: 120px 80px;
+      background: #1a1a1b;
+      display: flex;
+      flex-direction: row;
+      padding: 120px 80px;
+      gap: 28px;
+    }
+
+    .footer-logo img {
+      width: 215px;
+      height: auto;
+      display: block;
+    }
+
+    .footer-left-text {
+      color: var(--soft);
+      line-height: 1.6;
+    }
+
+    /* Sağ alan - 3 bölüm */
+    .footer-right {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: #1a1a1b;
+      gap: 40px;
+      padding: 120px 80px;
+      position: relative;
+    }
+
+    /* Ürünler Bölümü */
+    .footer-products {
+      display: flex;
+      flex-direction: row;
+      gap: 70px;
+    }
+
+    .footer-products h5 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #FFF;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-products ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-products a {
+      color: var(--soft);
+      text-decoration: none;
+      transition: color 0.25s ease;
+      font-size: 15px;
+      line-height: 1.4;
+    }
+
+    .footer-products a:hover {
+      color: var(--primary-color);
+    }
+
+    /* Sosyal Medya Bölümü */
+    .footer-social {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      justify-content: flex-start;
+      padding-top: 60px;
+    }
+
+    .footer-social h5 {
+      font-size: 18px;
+      color: #FFF;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .social-icons {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--soft);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .social-link:hover {
+      background: var(--primary-color);
+      color: #000;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(250, 176, 42, 0.3);
+    }
+
+    .social-link i {
+      font-size: 20px;
+    }
+
+    /* Harita ve İletişim Bölümü */
+    .footer-contact {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      background: #1a1a1b;
+    }
+
+    .footer-map {
+      position: absolute;
+      inset: 0;
+      opacity: 0.3;
+      background: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&h=600&fit=crop') center/cover;
+      filter: grayscale(1) brightness(0.4);
+    }
+
+    .contact-info {
+      position: relative;
+      z-index: 2;
+      padding: 30px 25px;
+      background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact-info h5 {
+      font-size: 16px;
+      color: var(--primary-color);
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .contact-item i {
+      color: var(--primary-color);
+      font-size: 16px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .contact-item span {
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .contact-item a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+
+    .contact-item a:hover {
+      color: var(--primary-color);
+    }
+
+    /* Alt şerit */
+    .footer-bottom {
+      padding: 30px 0 60px;
+    }
+
+    .footer-bottom-wrap {
+      max-width: 1672px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .copyright {
+      color: var(--soft);
+      font-size: 16px;
+    }
+
+    .copyright a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .copyright a:hover {
+      color: var(--brand);
+    }
+
+    /* Responsive */
+    @media (max-width: 1280px) {
+      .footer-left {
+        padding: 60px 40px;
+      }
+      
+      .footer-right {
+        padding: 60px 40px;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .footer-wrap {
+        flex-direction: column;
+      }
+      
+      .footer-left {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .footer-right {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+      
+      .footer-contact {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .footer {
+        padding: 30px 16px;
+      }
+      
+      .footer-right {
+        grid-template-columns: 1fr;
+        padding: 40px 20px;
+        gap: 40px;
+      }
+      
+      .footer-left {
+        padding: 40px 20px;
+      }
+      
+      .footer-social {
+        padding-top: 0;
+      }
+      
+      .social-icons {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Demo content styling */
+    .demo-content {
+      padding: 100px 20px;
+      text-align: center;
+      color: var(--soft);
+    }
