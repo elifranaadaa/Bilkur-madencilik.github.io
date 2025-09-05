@@ -630,8 +630,11 @@ attachProductCarousel('pulley',  { interval: 4000, startIndex: 'middle' });
 })();
 
 
+
 /* footer-map hover efekti (opsiyonel) */
-document.querySelectorAll('.footer-map').forEach(box=>{
-  box.addEventListener('mouseenter', ()=> box.querySelector('iframe').style.opacity = '.38');
-  box.addEventListener('mouseleave', ()=> box.querySelector('iframe').style.opacity = '.28');
+document.querySelectorAll('.footer-map').forEach(box => {
+  const frame = box.querySelector('iframe');
+  if (!frame) return;
+  box.addEventListener('mouseenter', () => frame.style.opacity = '.38');
+  box.addEventListener('mouseleave', () => frame.style.opacity = '.28');
 });
