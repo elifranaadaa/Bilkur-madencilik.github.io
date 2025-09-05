@@ -576,6 +576,7 @@ function attachProductCarousel(prefix, options = {}) {
   // Başlat
   setActive(current);
   startAuto && startAuto();
+window.addEventListener('resize', updateListPosition);
 }
 
 
@@ -604,3 +605,4 @@ attachProductCarousel('pulley',  { interval: 4000, startIndex: 'middle' });
     if (next) next.addEventListener('click', (e) => { e.preventDefault(); scrollByStep(1); });
   })();
 })();
+
