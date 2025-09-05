@@ -8,6 +8,8 @@
   --white:#FFFCF2;
   --gradient-bg:linear-gradient(180deg, rgba(19,23,31,.95) 0%, rgba(19,23,31,.30) 49.48%, #13171F 100%);
   --shadow-header:rgba(0,0,0,.2) 0 10px 30px -20px;
+  --urunler-accent: #9ca3af;   /* gri vurgu */
+  --urunler-bg: #1b1d21; 
 }
 :root{ --mheader: 82px; }  /* mobil/tablet üst şerit yüksekliği */
 body{
@@ -1276,3 +1278,175 @@ body.menu-open{overflow:hidden}
   }
 }
 
+
+
+
+
+
+
+
+
+/* Sosyal medya */
+.urunler-social{position:fixed;left:50px;top:190px;z-index:100;display:flex;align-items:center;justify-content:center}
+@media (max-width:1200px){.urunler-social{display:none}}
+.urunler-social-list{display:flex;flex-direction:column;gap:30px;list-style:none}
+.urunler-social-link{display:flex;position:relative;padding:10px;border-radius:50%;transition:.35s;color:rgba(255,255,255,.6);text-decoration:none}
+.urunler-social-link::before{content:"";position:absolute;width:0;height:0;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;transition:.35s;border:3px solid transparent}
+.urunler-social-link:hover::before{width:45px;height:45px;border-color: var(--urunler-accent);}
+.urunler-social-link:hover{color:#fff}
+.urunler-social-link i{font-size:16px;transition:.35s}
+
+/* Ana alan */
+.urunler-main{position:relative}
+.urunler-split-content{position:absolute;width:100%;height:100%;left:0;top:0;z-index:100;pointer-events:none}
+@media (max-width:1200px){.urunler-split-content{display:none}}
+.urunler-split{background:rgba(255,255,255,.15);height:100%;width:1px;margin-left:140px}
+
+/* Ürünler bölümü */
+.urunler-products{position:relative;overflow:hidden;padding:80px 0;min-height:100vh; background: var(--urunler-bg);}
+.urunler-gradient-bg{position:absolute;z-index:-1;top:50%;left:0;transform:translate(-40%,-50%);width:810px;height:810px;border-radius:50%;background: radial-gradient(50% 50% at 50% 50%,
+              rgba(156,163,175,.55) 0%, rgba(156,163,175,0) 100%);
+  opacity: .28;pointer-events:none}
+.urunler-wrapper{max-width:100%;margin:0 auto;width:100%;padding:50px 0;padding-left:140px;padding-right:107.5px;position:relative}
+@media (max-width:1200px){.urunler-wrapper{padding-left:30px;padding-right:30px}}
+.urunler-wrapper--news{display:flex;flex-direction:column;gap:75px;padding:0}
+.urunler-gradient-image{position:absolute;right:0;top:0;width:max-content;height:100%;pointer-events:none}
+.urunler-gradient-image img{width:100%;height:100%;object-fit:contain;object-position:center;filter: grayscale(1) brightness(.88) contrast(1.05);}
+
+.urunler-select{position:relative;padding-left:60px;margin-bottom:50px;z-index:10}
+@media (max-width:1200px){.urunler-select{padding-left:40px}}
+.urunler-container{padding:0;max-width:100%;display:flex;flex-direction:column}
+.urunler-container small{color:#FAB02A;text-transform:uppercase;letter-spacing:3.6px;font-size:12px;font-weight:bold;margin-bottom:30px}
+
+.urunler-tabs{width:max-content;margin-left:0;display:flex;flex-wrap:wrap;max-width:100%;align-items:flex-start;justify-content:flex-start;position:relative;gap:50px;list-style:none}
+.urunler-tab{position:relative;transition:.45s;cursor:pointer;text-align:center;word-wrap:break-word}
+.urunler-tab-label{position:relative;font-size:32px;font-weight:bold;border-radius:20px;transition:.45s;color:#FAB02A;}
+@media (max-width:1200px){.urunler-tab-label{font-size:26px}}
+
+
+/* Tab içerik */
+.urunler-tabdesc{position:relative;transition:.45s;min-height:600px}
+.urunler-desc{width:100%;position:absolute;opacity:0;visibility:hidden;transform:translateY(30px);transition:.45s;top:0;left:0}
+.urunler-desc.active{opacity:1;visibility:visible;transform:translateY(0);transition-delay:.45s;z-index:1}
+
+.urunler-content{position:relative;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,6fr);align-items:flex-start;gap:100px;height:100%}
+@media (max-width:1200px){.urunler-content{gap:75px}}
+@media (max-width:640px){.urunler-content{grid-template-columns:1fr;gap:75px}}
+
+.urunler-list-col{position:relative;z-index:10;border-left:1px solid rgba(255,255,255,.15);height:100%;overflow: hidden;--urunler-active-slot: 110px;}
+@media (max-width:640px){
+  .urunler-list-col{border-left:0;border-bottom:1px solid #FAB02A;padding-bottom:30px}
+}
+
+/* Dikey nav butonları */
+.urunler-nav-controls{z-index:20;height:52px;gap:20px;display:flex;align-items:center;position:absolute;top:50%;right:-30px;transform:translateY(-50%) rotate(90deg)}
+@media (max-width:640px){
+  .urunler-nav-controls{top:100%;left:0;right:auto;transform:translateY(0) rotate(0);margin:0 auto;width:100%;justify-content:center;margin-top:10px}
+}
+/* Ürünler – ok ikonları görünürlük */
+.urunler-nav-icon i { color: #9ca3af; opacity: 1; }
+.urunler-nav-icon { border-color: rgba(156,163,175,.35); }
+.urunler-blog-btn i { color: #9ca3af; } /* haber kartındaki sağ-ok */
+.urunler-nav-icon .icon,
+.urunler-blog-btn .icon {
+  width: 18px; height: 18px;
+  fill: currentColor; display: block;
+}
+.urunler-nav-icon { color: #9ca3af; }
+.urunler-blog-btn { color: #9ca3af; }
+.urunler-nav-btn{pointer-events:auto;transition:.35s;position:relative;cursor:pointer}
+.urunler-nav-btn.disabled{opacity:.5;pointer-events:none}
+.urunler-nav-icon{display:flex;align-items:center;justify-content:center;width:60px;height:60px;background:rgba(130,130,130,.05);backdrop-filter:blur(10px);border-radius:50%;cursor:pointer;border:1px solid rgba(255,255,255,.25);transition:.35s;position:relative}
+.urunler-nav-icon svg{width:100%;height:100%;position:absolute;left:0;top:0;cursor:pointer}
+.urunler-main-circle{stroke-width:2px;stroke-dasharray:750;stroke-dashoffset:750;stroke:none;fill:none}
+.urunler-fillable{stroke-width:2px;stroke-dasharray:750;stroke-dashoffset:750;stroke: var(--urunler-accent);fill:none;transition:stroke-dashoffset 1s cubic-bezier(.25,.46,.45,.94)}
+.urunler-nav-btn:hover .urunler-fillable{stroke-dashoffset:530}
+.urunler-nav-icon i{color:rgba(255,255,255,.25);font-size:18px;display:flex;align-items:center;justify-content:center;transition:.35s;z-index:2;position:relative}
+.urunler-nav-btn:hover .urunler-nav-icon i{color:#fff}
+
+/* Ürün listesi */
+.urunler-product-list{overflow:visible;height:auto;max-height:none;padding-bottom: 160px;transition: transform .6s cubic-bezier(.25,.46,.45,.94);will-change: transform;}
+@media (max-width:1200px){.urunler-product-list{padding-left:40px}}
+@media (max-width:640px){.urunler-product-list{padding-left:0}}
+.urunler-product-item{position:relative;height:fit-content;cursor:pointer;margin-bottom:25px;transition:.35s}
+.urunler-product-link{display:flex;gap:25px;align-items:center;border-left:2px solid transparent;transition:.45s;text-decoration:none;height:100%;padding:15px 0;padding-left:80px}
+@media (max-width:640px){
+  .urunler-product-link{padding-left:0;border-left:0;justify-content:center}
+}
+.urunler-list-col::before,
+.urunler-list-col::after{
+  content:"";
+  position:absolute; left:0; right:0;
+  pointer-events:none; z-index:5;
+}
+.urunler-list-col::before{
+  top:0; height: calc(var(--urunler-active-slot) - 10px);
+}
+.urunler-list-col::after{
+  bottom:0; height: 120px;
+}
+.urunler-product-item.active .urunler-product-link{border-left-color: var(--urunler-accent);}
+.urunler-product-title{text-align:left;position:relative;z-index:2;font-size:28px;line-height:1.2;font-weight:300;color:rgba(255,255,255,.35);transition:.35s}
+@media (max-width:1200px){.urunler-product-title{font-size:24px}}
+@media (max-width:640px){.urunler-product-title{text-align:center;font-size:20px}}
+.urunler-product-item:hover .urunler-product-title{color:rgba(255,255,255,.66)}
+.urunler-product-item.active .urunler-product-title{color:#fff;font-weight:500}
+.urunler-product-link i{position:relative;z-index:2;font-size:16px;display:block;line-height:1;transition:.45s;color: var(--urunler-accent);opacity:0}
+.urunler-product-item.active .urunler-product-link i{opacity:1}
+
+/* Görsel tarafı */
+.urunler-image-col{display:grid;grid-template-columns:1fr;align-items:center;gap:45px;height:100%}
+.urunler-image-carousel{width:100%;overflow:visible;z-index:6;position:relative;height:450px}
+.urunler-image-slide{opacity:0;transform:scale(.5);transition:all 1s ease;pointer-events:none;position:absolute;top:0;left:0;width:100%;height:100%}
+.urunler-image-slide.active{opacity:1;transform:scale(1);pointer-events:auto}
+.urunler-image-link{display:block;width:100%;height:100%;overflow:hidden;transition:all 1s ease}
+.urunler-image-link:hover{transform:scale(1.05)}
+.urunler-image-link img{width:100%;height:100%;object-fit:contain;object-position:center;transition:.45s}
+
+/* HABERLER */
+.urunler-news{padding:120px 0;overflow:hidden;position:relative;background: var(--urunler-bg);}
+.urunler-news .urunler-gradient-bg{top:48%;left:50%;transform:translate(-50%,-50%)}
+.urunler-container{max-width:1600px;margin:0 auto;padding:0 30px}
+.urunler-top-field{display:flex;gap:15px;margin:0 auto;width:100%;justify-content:center;align-items:center}
+.urunler-carousel-ctrl{display:flex;align-items:center;gap:70px}
+.urunler-carousel-nav{width:100%;display:flex;justify-content:center;align-items:center;gap:80px;pointer-events:none}
+.urunler-title-field{display:flex;flex-direction:column;gap:10px}
+.urunler-news-title{font-size:48px;line-height:1.2;color:#fff;font-weight:bold;text-align:center}
+.urunler-news-title strong{color: #FAB02A;}
+@media (max-width:1200px){.urunler-news-title{font-size:42px}}
+
+/* Haber kartları */
+.urunler-news-wrap{position:relative}
+.urunler-news-carousel{display:flex;gap:40px;padding:30px;padding-bottom:30px;overflow-x:auto;scroll-behavior:smooth;transition:transform .3s ease;-ms-overflow-style: none;scrollbar-width: none;overflow-y: hidden;}
+.urunler-news-carousel::-webkit-scrollbar {
+  display: none;              /* Chrome/Safari/Opera */
+}
+.urunler-news-item{flex:0 0 450px;margin-right:40px}
+@media (max-width:768px){.urunler-news-item{flex:0 0 300px;margin-right:20px}}
+.urunler-blog-item{width:100%;height:100%;position:relative;overflow:hidden}
+.urunler-blog-content{width:100%;height:100%}
+.urunler-blog-image-field{position:relative}
+.urunler-blog-btn-field{position:absolute;right:0;bottom:-1px;z-index:3}
+.urunler-blog-btn{height:75px;width:75px;display:flex;justify-content:center;align-items:center;border-radius:20px 0 20px 0;background:#FAB02A;border:1px solid rgba(250,176,42,.2);position:relative;transition:.5s;overflow:hidden;opacity:0;transform:scale(.75);transform-origin:bottom right}
+.urunler-blog-item:hover .urunler-blog-btn{opacity:1;transform:scale(1)}
+.urunler-blog-btn i{font-size:18px;position:relative;z-index:2;color:#13171F;transition:.45s}
+.urunler-block{display:block;width:100%;height:100%;position:relative;text-decoration:none}
+.urunler-gradient-overlay{transition:.45s;background:rgba(0,0,0,.3);position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;border-radius:20px;opacity:0}
+.urunler-blog-item:hover .urunler-gradient-overlay{opacity:1}
+.urunler-blog-image{height:400px;overflow:hidden;width:100%;border-radius:20px}
+.urunler-blog-image img{width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.1);transition:transform .45s ease}
+
+.urunler-blog-text{margin-top:40px}
+.urunler-title-field{display:flex;flex-direction:column;justify-content:flex-start;gap:10px}
+.urunler-blog-text-content{display:block;text-decoration:none}
+.urunler-title{font-size:24px;font-weight:300;color:#fff;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* Responsive ufak düzenlemeler */
+@media (max-width:768px){
+  .urunler-wrapper{padding-left:20px;padding-right:20px}
+  .urunler-tabs{gap:15px;justify-content:center}
+  .urunler-tab-label{font-size:20px}
+  .urunler-product-title{font-size:18px}
+  .urunler-news{padding:60px 0}
+  .urunler-carousel-ctrl{flex-direction:column;gap:30px}
+}
