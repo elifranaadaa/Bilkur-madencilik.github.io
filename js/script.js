@@ -608,3 +608,30 @@ attachProductCarousel('pulley',  { interval: 4000, startIndex: 'middle' });
   })();
 })();
 
+
+// Footer görünürken split-line ve sosyal ikonları gizle
+(() => {
+  const footer = document.querySelector('.footer');
+  const split  = document.querySelector('.split-line');
+  const social = document.querySelector('.social-media');
+
+  if (!footer) return;
+
+  const io = new IntersectionObserver(([entry]) => {
+    const hide = entry.isIntersecting; // footer ekranda mı?
+    if (split)  split.style.opacity  = hide ? '0' : '1';
+    if (social) {
+      social.style.opacity       = hide ? '0' : '1';
+      social.style.pointerEvents = hide ? 'none' : 'auto';
+    }
+  }, { threshold: 0.1 });
+
+  io.observe(footer);
+})();
+
+
+/* footer-map hover efekti (opsiyonel) */
+document.querySelectorAll('.footer-map').forEach(box=>{
+  box.addEventListener('mouseenter', ()=> box.querySelector('iframe').style.opacity = '.38');
+  box.addEventListener('mouseleave', ()=> box.querySelector('iframe').style.opacity = '.28');
+});
