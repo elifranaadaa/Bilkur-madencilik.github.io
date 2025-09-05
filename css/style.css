@@ -1522,6 +1522,106 @@ body.menu-open{overflow:hidden}
 }
 @media (max-width: 767px){
   .urunler-carousel-nav{ gap: 10px !important; }
-  .urunler-news-title{ font-size: 28px !important; }
+  .urunler-news-title{ font-size: 24px !important; }
 }
 
+
+
+/* === ÜRÜNLER: Tablet & Telefon düzeni === */
+@media (max-width:1025px){
+  /* Gri glow'u gizle */
+  .urunler-gradient-bg,
+  .urunler-gradient-image{ display:none !important; }
+
+  /* Tek kolona geç */
+  .urunler-content{
+    grid-template-columns:1fr !important;
+    gap:32px !important;
+  }
+
+  /* Liste sütunu: alt çizgi, iç boşluk */
+  .urunler-list-col{
+    border-left:0 !important;
+    border-bottom:1px solid rgba(255,255,255,.2);
+    padding-bottom:12px;
+  }
+  .urunler-list-col::before,
+  .urunler-list-col::after{ display:none !important; }
+
+  /* Ürün başlıklarını yatay chip gibi sırala */
+  .urunler-product-list{
+    display:flex;
+    gap:28px;
+    overflow-x:auto;
+    scroll-snap-type:x proximity;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+    padding:8px 0 16px;
+    transform:none !important; /* dikey hizalama transform'unu iptal */
+  }
+  .urunler-product-item{
+    flex:0 0 auto;
+    margin-bottom:0;
+    scroll-snap-align:center;
+  }
+  .urunler-products {
+    min-height: 0;
+  }
+  .urunler-product-link{
+    padding:12px 0;
+    border-left:0 !important;
+    gap:10px;
+    justify-content:flex-start !important;
+  }
+  .urunler-product-title{
+    text-align:left !important;
+    font-size:18px;
+  }
+
+  /* Oklar başlık şeridinin altına, ortalı */
+  .urunler-nav-controls{
+    position:static !important;
+    transform:none !important;
+    margin:10px auto 0 !important;
+    justify-content:center !important;
+  }
+
+  /* Görsel yüksekliği ekrana göre */
+  .urunler-image-carousel{
+    height:clamp(260px,56vw,440px) !important;
+  }
+  .urunler-nav-controls {
+  display: none;
+}
+.urunler-product-link i{
+display: none;
+}
+.urunler-products{
+  padding: 0;
+}
+}
+
+/* Küçük telefonlar için ufaklaşma */
+@media (max-width:640px){
+  .urunler-product-title{ font-size:16px; }
+  .urunler-product-list{ gap:20px; }
+    .urunler-products {
+    min-height: 0;
+  }
+  .urunler-tabdesc{
+    min-height: 400px;
+  }
+  .urunler-nav-controls {
+  display: none;
+}
+.urunler-product-link i{
+display: none;
+}
+.urunler-products{
+  padding: 0;
+}
+.urunler-select{
+  padding-left:0;
+}
+}
