@@ -201,6 +201,23 @@ window.addEventListener('scroll', () => {
   });
 });
 
+/* === Header scroll state === */
+const headerEl = document.getElementById('header');
+
+function updateHeaderOnScroll() {
+  if (!headerEl) return;
+  // Aşağı inerken (en ufak scroll’da) scrolled aktif olsun
+  if (window.scrollY > 0) {
+    headerEl.classList.add('scrolled');
+  } else {
+    headerEl.classList.remove('scrolled');
+  }
+}
+
+// Sayfa ilk yüklenişi ve her scroll’da kontrol et
+window.addEventListener('load', updateHeaderOnScroll, { passive: true });
+window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
+
 
 
 // Stat number animasyonu
@@ -295,4 +312,5 @@ if (statNumbers.length) {
     wheelTimeout = setTimeout(()=>wheelTimeout=null, 500);
     if(e.deltaY > 0) go(index + 1); else go(index - 1);
   }, {passive:true});
+
 })();
