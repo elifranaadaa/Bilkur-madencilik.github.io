@@ -254,63 +254,166 @@ if (statNumbers.length) {
 
 
 
-
 (() => {
-  const slides = [...document.querySelectorAll('.slide')];
-  const bg = document.querySelector('.bg');
-  const menu = document.getElementById('menu');
-  let index = 0;
+  // DOM Elementleri
+  const slides = Array.from(document.querySelectorAll('.uretim-slide'));
+  const backgroundImage = document.querySelector('.uretim-background-image');
+  const prevBtn = document.getElementById('uretim-prev-btn');
+  const nextBtn = document.getElementById('uretim-next-btn');
 
-  // Build side menu from sections
-  slides.forEach((s, i) => {
-    const li = document.createElement('li');
-    const a = document.createElement('a');
-    a.href = '#';
-    a.textContent = s.dataset.title;
-    a.dataset.index = i;
-    a.addEventListener('click', (e) => {
-      e.preventDefault();
-      go(i);
+  // Steps Elementleri
+  const stepsNav = document.querySelector('.uretim-steps-navigation');
+  const stepsContainer = stepsNav ? stepsNav.querySelector('.uretim-steps-container') : null;
+  const stepsList = stepsContainer ? stepsContainer.querySelector('.uretim-steps-list') : null;
+  const stepItems = stepsList ? Array.from(stepsList.querySelectorAll('.uretim-step-item')) : [];
+  const stepLinks = stepItems.map(li => li.querySelector('.uretim-step-link'));
+
+  // Değişkenler
+  let currentStep = 0;
+  const STEP_HEIGHT = 150;
+  const VISIBLE_AREA_TOP = 280;
+
+  // Arkaplan Güncelleme Fonksiyonu
+  function updateBackgroundImage(slideIndex) {
+    const slide = slides[slideIndex];
+    if (!slide) return;
+    
+    const nextBgUrl = slide.dataset.bg || 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200';
+    backgroundImage.style.backgroundImage = `linear-gradient(180deg,rgba(0,0,0,.85),rgba(0,0,0,.65)), url('${nextBgUrl}')`;
+  }
+
+  // Aktif Slide Ayarlama Fonksiyonu
+  function setActiveSlide(slideIndex) {
+    // Eski aktif slide'ı kaldır
+    const activeSlide = slides.find(s => s.classList.contains('uretim-slide-active'));
+    if (activeSlide) {
+      activeSlide.classList.remove('uretim-slide-active');
+      activeSlide.classList.add('uretim-slide-exit');
+      setTimeout(() => activeSlide.classList.remove('uretim-slide-exit'), 450);
+    }
+
+    // Yeni slide'ı aktif et
+    const newSlide = slides[slideIndex];
+    if (newSlide) newSlide.classList.add('uretim-slide-active');
+
+    updateBackgroundImage(slideIndex);
+  }
+
+  // Steps Pozisyon Güncelleme Fonksiyonu
+  function updateStepsPosition() {
+    if (!stepsContainer) return;
+    
+    const windowHeight = window.innerHeight;
+    const targetY = (windowHeight / 2) - (STEP_HEIGHT / 2);
+    const activeStepCurrentY = VISIBLE_AREA_TOP + (currentStep * STEP_HEIGHT);
+    const offset = targetY - activeStepCurrentY;
+    
+    stepsContainer.style.transform = `translateY(${VISIBLE_AREA_TOP + offset}px)`;
+  }
+
+  // Ana Step Değiştirme Fonksiyonu
+  function setCurrentStep(stepIndex) {
+    const stepCount = stepItems.length || 1;
+    currentStep = ((stepIndex % stepCount) + stepCount) % stepCount;
+    
+    // Slide'ı değiştir
+    setActiveSlide(currentStep);
+    
+    // Step görsellerini güncelle
+    stepItems.forEach((li, index) => {
+      li.classList.toggle('uretim-step-active', index === currentStep);
     });
-    li.appendChild(a);
-    menu.appendChild(li);
-  });
-
-  function updateBg(i){
-    const next = slides[i].dataset.bg || 'images/hero1.jpg';
-    bg.style.backgroundImage = `linear-gradient(180deg,rgba(0,0,0,.85),rgba(0,0,0,.65)), url('${next}')`;
+    
+    // Steps pozisyonunu güncelle
+    updateStepsPosition();
   }
 
-  function go(i){
-    slides[index].classList.remove('active');
-    index = (i + slides.length) % slides.length;
-    slides[index].classList.add('active');
-    // update menu active
-    [...menu.querySelectorAll('a')].forEach(a => a.classList.remove('active'));
-    const activeA = menu.querySelector(`a[data-index="${index}"]`);
-    if(activeA) activeA.classList.add('active');
-    updateBg(index);
-  }
+  // Başlangıç Ayarları
+  setCurrentStep(0);
 
-  // initial states
-  go(0);
-
-  // controls
-  document.getElementById('prev').addEventListener('click', () => go(index - 1));
-  document.getElementById('next').addEventListener('click', () => go(index + 1));
-
-  // keyboard
-  window.addEventListener('keydown', (e) => {
-    if(e.key === 'ArrowUp') go(index - 1);
-    if(e.key === 'ArrowDown') go(index + 1);
+  // Event Listeners
+  
+  // Step Link Tıklamaları
+  stepLinks.forEach((button, index) => {
+    if (button) {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        setCurrentStep(index);
+      });
+    }
   });
 
-  // wheel (optional, throttled)
-  let wheelTimeout=null;
-  window.addEventListener('wheel', (e)=>{
-    if(wheelTimeout) return;
-    wheelTimeout = setTimeout(()=>wheelTimeout=null, 500);
-    if(e.deltaY > 0) go(index + 1); else go(index - 1);
-  }, {passive:true});
+  // Navigasyon Butonları
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => setCurrentStep(currentStep - 1));
+  }
+  
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => setCurrentStep(currentStep + 1));
+  }
 
+  // Klavye Kontrolleri
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      setCurrentStep(currentStep - 1);
+    }
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      setCurrentStep(currentStep + 1);
+    }
+  });
+
+  // Pencere Yeniden Boyutlandırma
+  window.addEventListener('resize', () => {
+    updateStepsPosition();
+  });
+})();
+
+
+// ==== Üretim Swipe Kontrolleri (telefon için) ====
+(() => {
+  const slides = document.querySelectorAll(".uretim-slide");
+  let startX = 0;
+  let currentX = 0;
+  let isSwiping = false;
+
+  function goToSlide(index) {
+    const total = slides.length;
+    if (index < 0) index = total - 1;
+    if (index >= total) index = 0;
+    slides.forEach((s, i) => {
+      s.classList.toggle("uretim-slide-active", i === index);
+    });
+    currentSlide = index;
+  }
+
+  let currentSlide = 0;
+
+  document.querySelectorAll(".uretim-slide").forEach((slide) => {
+    slide.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+      isSwiping = true;
+    });
+
+    slide.addEventListener("touchmove", (e) => {
+      if (!isSwiping) return;
+      currentX = e.touches[0].clientX;
+    });
+
+    slide.addEventListener("touchend", () => {
+      if (!isSwiping) return;
+      let diffX = currentX - startX;
+      if (Math.abs(diffX) > 50) {
+        if (diffX > 0) {
+          // sağa kaydır → önceki
+          goToSlide(currentSlide - 1);
+        } else {
+          // sola kaydır → sonraki
+          goToSlide(currentSlide + 1);
+        }
+      }
+      isSwiping = false;
+    });
+  });
 })();
