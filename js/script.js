@@ -66,6 +66,16 @@ let autoTimer = setInterval(()=>{
 });
 
 
+// === Preloader ===
+window.addEventListener("load", () => {
+  const preloader = document.getElementById("preloader");
+  if (preloader) {
+    preloader.classList.add("hidden");
+    setTimeout(() => preloader.remove(), 800); // tamamen DOM'dan sil
+  }
+});
+
+
 
 // Scroll-indicator’a basılınca “hakkımızda” section’a git
 const scrollInd = document.querySelector('.scroll-indicator');
