@@ -2,6 +2,38 @@ const isUrunlerMobile = () => window.matchMedia('(max-width:1024px)').matches;
 
 document.querySelectorAll('.hero-video').forEach(el => el.style.transform = 'none');
 
+// === Mega menü kategorileri: aktif paneli değiştir ===
+document.querySelectorAll('.dropdown-wrapper.is-sarma').forEach(wrapper=>{
+  const btns   = wrapper.querySelectorAll('.cat-btn');
+  const panels = wrapper.querySelectorAll('.dropdown-panel');
+
+  function activate(id){
+    // butonlar
+    btns.forEach(b=>{
+      const on = b.dataset.panel === id;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    // paneller
+    panels.forEach(p=>{
+      const on = p.id === id;
+      if (on){ p.removeAttribute('hidden'); p.classList.add('active'); }
+      else   { p.setAttribute('hidden','');   p.classList.remove('active'); }
+    });
+  }
+
+  btns.forEach(b=>{
+    const id = b.dataset.panel;
+    // hover ile değişsin (masaüstü)
+    b.addEventListener('mouseenter', ()=>activate(id));
+    // klavye erişilebilirliği
+    b.addEventListener('focus',      ()=>activate(id));
+    b.addEventListener('click', (e)=>{ e.preventDefault(); activate(id); });
+  });
+});
+
+
+
 // ==== SLIDER (HTML kaynaklı metin) ====
 let currentSlide = 0;
 const slidesDOM = document.querySelectorAll('.slide');
