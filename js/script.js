@@ -1,40 +1,56 @@
+/* =====================================================
+   BILKUR MADENCILIK - ANA JAVASCRIPT DOSYASI
+   ===================================================== */
+
+/* ===== 1. GENEL FONKSİYONLAR ===== */
+
+// Mobil kontrol fonksiyonu
 const isUrunlerMobile = () => window.matchMedia('(max-width:1024px)').matches;
 
+// Transform reset (parallax iptal)
 document.querySelectorAll('.hero-video').forEach(el => el.style.transform = 'none');
 
-// === Mega menü kategorileri: aktif paneli değiştir ===
-document.querySelectorAll('.dropdown-wrapper.is-sarma').forEach(wrapper=>{
-  const btns   = wrapper.querySelectorAll('.cat-btn');
+/* ===== 2. MEGA MENÜ KATEGORİLERİ ===== */
+document.querySelectorAll('.dropdown-wrapper.is-sarma').forEach(wrapper => {
+  const btns = wrapper.querySelectorAll('.cat-btn');
   const panels = wrapper.querySelectorAll('.dropdown-panel');
 
-  function activate(id){
-    // butonlar
-    btns.forEach(b=>{
+  function activate(id) {
+    // Butonları aktif/pasif yap
+    btns.forEach(b => {
       const on = b.dataset.panel === id;
       b.classList.toggle('active', on);
       b.setAttribute('aria-selected', on ? 'true' : 'false');
     });
-    // paneller
-    panels.forEach(p=>{
+    
+    // Panelleri göster/gizle
+    panels.forEach(p => {
       const on = p.id === id;
-      if (on){ p.removeAttribute('hidden'); p.classList.add('active'); }
-      else   { p.setAttribute('hidden','');   p.classList.remove('active'); }
+      if (on) { 
+        p.removeAttribute('hidden'); 
+        p.classList.add('active'); 
+      } else { 
+        p.setAttribute('hidden',''); 
+        p.classList.remove('active'); 
+      }
     });
   }
 
-  btns.forEach(b=>{
+  // Event listeners
+  btns.forEach(b => {
     const id = b.dataset.panel;
-    // hover ile değişsin (masaüstü)
-    b.addEventListener('mouseenter', ()=>activate(id));
-    // klavye erişilebilirliği
-    b.addEventListener('focus',      ()=>activate(id));
-    b.addEventListener('click', (e)=>{ e.preventDefault(); activate(id); });
+    // Hover ile değişsin (masaüstü)
+    b.addEventListener('mouseenter', () => activate(id));
+    // Klavye erişilebilirliği
+    b.addEventListener('focus', () => activate(id));
+    b.addEventListener('click', (e) => { 
+      e.preventDefault(); 
+      activate(id); 
+    });
   });
 });
 
-
-
-// ==== SLIDER (HTML kaynaklı metin) ====
+/* ===== 3. ANA SLIDER SİSTEMİ ===== */
 let currentSlide = 0;
 const slidesDOM = document.querySelectorAll('.slide');
 const totalSlides = slidesDOM.length;
@@ -42,80 +58,83 @@ const totalSlides = slidesDOM.length;
 // Sayacı güncelle
 document.querySelector('.carousel-counter .total').textContent = String(totalSlides).padStart(2, '0');
 
-function applyTextsFromHTML(i){
+// HTML'den metin bilgilerini al ve uygula
+function applyTextsFromHTML(i) {
   const s = slidesDOM[i];
   const title = s.dataset.title || '';
-  const desc  = s.dataset.desc  || '';
+  const desc = s.dataset.desc || '';
   document.querySelector('.hero-title').textContent = title;
   document.querySelector('.hero-description').textContent = desc;
   document.querySelector('.carousel-counter .current').textContent = String(i+1).padStart(2,'0');
 }
 
-function showSlide(i){
-  slidesDOM.forEach((el, idx)=>el.classList.toggle('active', idx===i));
+// Slide göster
+function showSlide(i) {
+  slidesDOM.forEach((el, idx) => el.classList.toggle('active', idx === i));
   applyTextsFromHTML(i);
 }
 
-function nextSlide(){
+// Sonraki slide
+function nextSlide() {
   currentSlide = (currentSlide + 1) % totalSlides;
   showSlide(currentSlide);
 }
-function prevSlide(){
+
+// Önceki slide
+function prevSlide() {
   currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
   showSlide(currentSlide);
 }
 
-// ilk yüklemede metinleri HTML'den çek
+// İlk yüklemede metinleri HTML'den çek
 showSlide(0);
 
-// butonlar
+// Navigasyon butonları
 document.getElementById('nextBtn').addEventListener('click', nextSlide);
 document.getElementById('prevBtn').addEventListener('click', prevSlide);
 
-// === Video davranışı: ilk slayttaki video biterse ve kullanıcı geçmediyse tekrar başlasın
+/* === Video Davranışı === */
 const firstVideo = slidesDOM[0].querySelector('video');
-if (firstVideo){
-  firstVideo.loop = false; // manuel döngü
+if (firstVideo) {
+  firstVideo.loop = false; // Manuel döngü
   firstVideo.addEventListener('ended', () => {
-    if (currentSlide === 0){
+    if (currentSlide === 0) {
       firstVideo.currentTime = 0;
       firstVideo.play();
     }
   });
 }
 
-// === Otomatik geçiş sadece resim slaytlarında çalışsın (video slaytında otomatik geçiş yok)
-let autoTimer = setInterval(()=>{
+/* === Otomatik Geçiş === */
+// Sadece resim slaytlarında çalışsın (video slaytında otomatik geçiş yok)
+let autoTimer = setInterval(() => {
   if (currentSlide !== 0) nextSlide(); // 0 (video) ise bekle
 }, 5000);
 
-// başka bir slayta gidince timer devam etsin (kullanıcı etkileşimi sonrası)
-['click','touchstart'].forEach(evt=>{
-  document.addEventListener(evt, ()=>{
+// Başka bir slayta gidince timer devam etsin (kullanıcı etkileşimi sonrası)
+['click','touchstart'].forEach(evt => {
+  document.addEventListener(evt, () => {
     clearInterval(autoTimer);
-    autoTimer = setInterval(()=>{
+    autoTimer = setInterval(() => {
       if (currentSlide !== 0) nextSlide();
     }, 5000);
   }, { once:true });
 });
 
-
-// === Preloader ===
+/* ===== 4. PRELOADER ===== */
 window.addEventListener("load", () => {
   const preloader = document.getElementById("preloader");
   if (preloader) {
     preloader.classList.add("hidden");
-    setTimeout(() => preloader.remove(), 800); // tamamen DOM'dan sil
+    setTimeout(() => preloader.remove(), 800); // Tamamen DOM'dan sil
   }
 });
 
-
-
-// Scroll-indicator’a basılınca “hakkımızda” section’a git
+/* ===== 5. SCROLL INDICATOR ===== */
 const scrollInd = document.querySelector('.scroll-indicator');
 
 if (scrollInd) {
-  // Kaybolma efektine scroll-indicator’u da ekle
+  // Kaybolma efektine scroll-indicator'u da ekle
   window.addEventListener('scroll', () => {
     const fadeStart = 50;
     const fadeEnd = window.innerHeight / 2;
@@ -136,8 +155,7 @@ if (scrollInd) {
   });
 }
 
-
-// Parallax for hero video
+/* ===== 6. PARALLAX HERO VIDEO ===== */
 window.addEventListener('scroll', () => {
   const scrolled = window.pageYOffset;
   const rate = scrolled * -0.5;
@@ -147,7 +165,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// ===== Bottom dock interactions (tablet & phone) =====
+/* ===== 7. BOTTOM DOCK & OVERLAY MENU ===== */
 const bbMenuBtn = document.getElementById('bbMenuBtn');
 const menuOverlay = document.getElementById('menuOverlay');
 const menuClose = document.getElementById('menuClose');
@@ -155,14 +173,16 @@ const bbLangBtn = document.getElementById('bbLangBtn');
 const bbLangPopup = document.getElementById('bbLangPopup');
 const bbToTop = document.getElementById('bbToTop');
 
+// Menu toggle
 if (bbMenuBtn && menuOverlay) {
   const toggleSheet = (force) => {
     const active = typeof force === 'boolean' ? force : !menuOverlay.classList.contains('active');
     menuOverlay.classList.toggle('active', active);
     bbMenuBtn.classList.toggle('active', active);
     menuOverlay.setAttribute('aria-hidden', !active);
-    document.body.classList.toggle('menu-open', active);   // << EKLENDİ
+    document.body.classList.toggle('menu-open', active);
   };
+  
   bbMenuBtn.addEventListener('click', () => toggleSheet());
   if (menuClose) menuClose.addEventListener('click', () => toggleSheet(false));
   menuOverlay.addEventListener('click', (e) => {
@@ -178,12 +198,11 @@ if (bbCallBtn) {
     bbCallBtn.classList.toggle('active');
   });
 
-  // dışarı tıklayınca kapat
+  // Dışarı tıklayınca kapat
   document.addEventListener('click', () => {
     bbCallBtn.classList.remove('active');
   });
 }
-
 
 // Language popover
 if (bbLangBtn && bbLangPopup) {
@@ -194,6 +213,7 @@ if (bbLangBtn && bbLangPopup) {
     bbLangPopup.style.visibility = open ? 'hidden' : 'visible';
     bbLangPopup.style.transform = open ? 'translateX(-50%) translateY(10px)' : 'translateX(-50%) translateY(0)';
   });
+  
   document.addEventListener('click', () => {
     bbLangPopup.style.opacity = '0';
     bbLangPopup.style.visibility = 'hidden';
@@ -211,11 +231,12 @@ document.querySelectorAll('.menu-accordion').forEach(btn => {
   });
 });
 
-// To top
+// To top button
 if (bbToTop) {
   bbToTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 }
 
+/* ===== 8. HAKKIMIZDA ANIMASYONLARI ===== */
 document.querySelectorAll('.about-content > *, .about-image').forEach(el => {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -227,22 +248,7 @@ document.querySelectorAll('.about-content > *, .about-image').forEach(el => {
   observer.observe(el);
 });
 
-
-// Scroll oldukça sayaç kaybolsun (dikey kalacak)
-window.addEventListener('scroll', () => {
-  const fadeStart = 50;                   // 50px scroll sonrası başlasın
-  const fadeEnd = window.innerHeight / 2; // ekranın yarısında tamamen kaybolsun
-  const scrollTop = window.scrollY;
-
-  let opacity = 1 - (scrollTop - fadeStart) / (fadeEnd - fadeStart);
-  opacity = Math.max(0, Math.min(1, opacity));
-
-  const counter = document.querySelector('.carousel-counter');
-  if(counter){
-    counter.style.opacity = opacity;
-  }
-});
-
+/* ===== 9. SCROLL FADE EFFECTS ===== */
 // Scroll oldukça sayaç, sosyal ikonlar ve scroll-indicator kaybolsun
 window.addEventListener('scroll', () => {
   const fadeStart = 50;
@@ -253,18 +259,18 @@ window.addEventListener('scroll', () => {
   opacity = Math.max(0, Math.min(1, opacity));
 
   document.querySelectorAll('.carousel-counter, .scroll-indicator').forEach(el => {
-    if(el){
+    if(el) {
       el.style.opacity = opacity;
     }
   });
 });
 
-/* === Header scroll state === */
+/* ===== 10. HEADER SCROLL STATE ===== */
 const headerEl = document.getElementById('header');
 
 function updateHeaderOnScroll() {
   if (!headerEl) return;
-  // Aşağı inerken (en ufak scroll’da) scrolled aktif olsun
+  // Aşağı inerken (en ufak scroll'da) scrolled aktif olsun
   if (window.scrollY > 0) {
     headerEl.classList.add('scrolled');
   } else {
@@ -272,11 +278,11 @@ function updateHeaderOnScroll() {
   }
 }
 
-// Sayfa ilk yüklenişi ve her scroll’da kontrol et
+// Sayfa ilk yüklenişi ve her scroll'da kontrol et
 window.addEventListener('load', updateHeaderOnScroll, { passive: true });
 window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
 
-// Mega menü açılıp kapanırken header'ı beyaza çevir
+/* === Mega menü açılıp kapanırken header'ı beyaza çevir === */
 const headerEl2 = document.getElementById('header');
 document.querySelectorAll('.nav-item.nav-has-dropdown').forEach(item => {
   const dropdown = item.querySelector('.nav-dropdown');
@@ -296,8 +302,7 @@ document.querySelectorAll('.nav-item.nav-has-dropdown').forEach(item => {
   }
 });
 
-
-// Stat number animasyonu
+/* ===== 11. STAT SAYILARI ANİMASYONU ===== */
 function animateValue(el, start, end, duration) {
   let startTimestamp = null;
   const step = (timestamp) => {
@@ -329,8 +334,7 @@ if (statNumbers.length) {
   statNumbers.forEach(el => observer.observe(el));
 }
 
-
-
+/* ===== 12. ÜRETİM AŞAMALARI SİSTEMİ ===== */
 (() => {
   // DOM Elementleri
   const slides = Array.from(document.querySelectorAll('.uretim-slide'));
@@ -447,8 +451,7 @@ if (statNumbers.length) {
   });
 })();
 
-
-// ==== Üretim Swipe Kontrolleri (telefon için) ====
+/* ===== 13. ÜRETİM SWIPE KONTROLLERİ (MOBİL) ===== */
 (() => {
   const slides = document.querySelectorAll(".uretim-slide");
   let startX = 0;
@@ -495,12 +498,12 @@ if (statNumbers.length) {
   });
 })();
 
-
-/* === ÜRÜNLER (urunler-*) TAB & KARUSELLER === */
+/* ===== 14. ÜRÜNLER BÖLÜMÜ - TAB & CAROUSEL SİSTEMİ ===== */
 (() => {
-  // --- Tablar ---
+  // Tab Sistemi
   const tabs = Array.from(document.querySelectorAll('.urunler-tab'));
   const descBoxes = Array.from(document.querySelectorAll('.urunler-desc'));
+  
   if (tabs.length && descBoxes.length) {
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
@@ -511,132 +514,144 @@ if (statNumbers.length) {
     });
   }
 
+  /* === Ortak Ürün Carousel Fonksiyonu === */
+  function attachProductCarousel(prefix, options = {}) {
+    const listEl = document.getElementById(`${prefix}-carousel`);
+    const imagesEl = document.getElementById(`${prefix}-images`);
+    const prevBtn = document.getElementById(`${prefix}-prev`);
+    const nextBtn = document.getElementById(`${prefix}-next`);
+    
+    if (!listEl || !imagesEl) return;
 
-  
-  // --- Ortak ürün karuseli bağlayıcı ---  (ÜRÜNLER – SOLDAN KAYAN AKTİF SLOT)
-function attachProductCarousel(prefix, options = {}) {
-  const listEl   = document.getElementById(`${prefix}-carousel`);
-  const imagesEl = document.getElementById(`${prefix}-images`);
-  const prevBtn  = document.getElementById(`${prefix}-prev`);
-  const nextBtn  = document.getElementById(`${prefix}-next`);
-  if (!listEl || !imagesEl) return;
+    const items = Array.from(listEl.querySelectorAll('.urunler-product-item'));
+    const slides = Array.from(imagesEl.querySelectorAll('.urunler-image-slide'));
+    
+    if (!items.length || !slides.length) return;
 
-  const items  = Array.from(listEl.querySelectorAll('.urunler-product-item'));
-  const slides = Array.from(imagesEl.querySelectorAll('.urunler-image-slide'));
-  if (!items.length || !slides.length) return;
-
-  const n = Math.min(items.length, slides.length);
-  const activeFromDom = items.findIndex(el => el.classList.contains('active'));
-
-  const ds = (imagesEl.dataset.startIndex || listEl.dataset.startIndex || '').toString().trim().toLowerCase();
-  const optStart = options.startIndex;
-
-  function norm(i){ return ((i % n) + n) % n; }
-
-  let current;
-  if (optStart === 'middle' || ds === 'middle' || ds === 'center') {
-    current = Math.floor((n - 1) / 2);
-  } else if (Number.isFinite(optStart)) {
-    current = norm(optStart);
-  } else if (!Number.isNaN(parseInt(ds, 10))) {
-    current = norm(parseInt(ds, 10));
-  } else if (activeFromDom >= 0) {
-    current = activeFromDom;
-  } else {
-    current = Math.floor((n - 1) / 2);
-  }
-
-
-  // ==== AUTOPLAY AYARLARI ====
-  const intervalFromAttr =
-    Number(imagesEl.dataset.interval || listEl.dataset.interval || 0) || undefined;
-  const AUTO_PLAY   = options.auto !== false; // default: true
-  const AUTO_INT    = Number(options.interval || intervalFromAttr || 5000); // ms
-  let autoTimer     = null;
-
-  function startAuto(){
-    if (!AUTO_PLAY) return;
-    stopAuto();
-    autoTimer = setInterval(() => setActive(current + 1, /*fromAuto=*/true), AUTO_INT);
-  }
-  function stopAuto(){
-    if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
-  }
-  function restartAuto(){
-    stopAuto(); startAuto();
-  }
-
-  // ==== LİSTEYİ ORTAYA HİZALA ====
-  function updateListPosition() {
-    const viewport = listEl.parentElement; // .urunler-list-col
-    if (!viewport) return;
-
-    const CENTER_OFFSET =
-      parseInt(getComputedStyle(viewport).getPropertyValue('--urunler-center-offset') || '0', 10) || 0;
-
-    const slotY = (viewport.clientHeight / 2) + CENTER_OFFSET;
-    const activeItem = items[current];
-    if (!activeItem) return;
-
-    const itemCenter  = activeItem.offsetTop + (activeItem.offsetHeight / 2);
-    const firstCenter = items[0].offsetTop + (items[0].offsetHeight / 2);
-    const last        = items[items.length - 1];
-    const lastCenter  = last.offsetTop + (last.offsetHeight / 2);
-
-    const maxY = slotY - firstCenter;
-    const minY = slotY - lastCenter;
-
-    let y = slotY - itemCenter;
-    if (y > maxY) y = maxY;
-    if (y < minY) y = minY;
-
-    listEl.style.transform = `translateY(${Math.round(y)}px)`;
-  }
-
-  function setActive(i, fromAuto = false) {
     const n = Math.min(items.length, slides.length);
-    current = ((i % n) + n) % n;
-    items.forEach((el, idx) => el.classList.toggle('active', idx === current));
-    slides.forEach((el, idx) => el.classList.toggle('active', idx === current));
-    updateListPosition();
-    if (!fromAuto) restartAuto(); // kullanıcı etkileşiminde sayaç sıfırla
+    const activeFromDom = items.findIndex(el => el.classList.contains('active'));
+
+    const ds = (imagesEl.dataset.startIndex || listEl.dataset.startIndex || '').toString().trim().toLowerCase();
+    const optStart = options.startIndex;
+
+    function norm(i) { 
+      return ((i % n) + n) % n; 
+    }
+
+    let current;
+    if (optStart === 'middle' || ds === 'middle' || ds === 'center') {
+      current = Math.floor((n - 1) / 2);
+    } else if (Number.isFinite(optStart)) {
+      current = norm(optStart);
+    } else if (!Number.isNaN(parseInt(ds, 10))) {
+      current = norm(parseInt(ds, 10));
+    } else if (activeFromDom >= 0) {
+      current = activeFromDom;
+    } else {
+      current = Math.floor((n - 1) / 2);
+    }
+
+    /* === AUTOPLAY AYARLARI === */
+    const intervalFromAttr = Number(imagesEl.dataset.interval || listEl.dataset.interval || 0) || undefined;
+    const AUTO_PLAY = options.auto !== false; // default: true
+    const AUTO_INT = Number(options.interval || intervalFromAttr || 5000); // ms
+    let autoTimer = null;
+
+    function startAuto() {
+      if (!AUTO_PLAY) return;
+      stopAuto();
+      autoTimer = setInterval(() => setActive(current + 1, /*fromAuto=*/true), AUTO_INT);
+    }
+    
+    function stopAuto() {
+      if (autoTimer) { 
+        clearInterval(autoTimer); 
+        autoTimer = null; 
+      }
+    }
+    
+    function restartAuto() {
+      stopAuto(); 
+      startAuto();
+    }
+
+    /* === LİSTEYİ ORTAYA HİZALA === */
+    function updateListPosition() {
+      const viewport = listEl.parentElement; // .urunler-list-col
+      if (!viewport) return;
+
+      const CENTER_OFFSET = parseInt(getComputedStyle(viewport).getPropertyValue('--urunler-center-offset') || '0', 10) || 0;
+
+      const slotY = (viewport.clientHeight / 2) + CENTER_OFFSET;
+      const activeItem = items[current];
+      if (!activeItem) return;
+
+      const itemCenter = activeItem.offsetTop + (activeItem.offsetHeight / 2);
+      const firstCenter = items[0].offsetTop + (items[0].offsetHeight / 2);
+      const last = items[items.length - 1];
+      const lastCenter = last.offsetTop + (last.offsetHeight / 2);
+
+      const maxY = slotY - firstCenter;
+      const minY = slotY - lastCenter;
+
+      let y = slotY - itemCenter;
+      if (y > maxY) y = maxY;
+      if (y < minY) y = minY;
+
+      listEl.style.transform = `translateY(${Math.round(y)}px)`;
+    }
+
+    function setActive(i, fromAuto = false) {
+      const n = Math.min(items.length, slides.length);
+      current = ((i % n) + n) % n;
+      items.forEach((el, idx) => el.classList.toggle('active', idx === current));
+      slides.forEach((el, idx) => el.classList.toggle('active', idx === current));
+      updateListPosition();
+      if (!fromAuto) restartAuto(); // kullanıcı etkileşiminde sayaç sıfırla
+    }
+
+    // Tıklama
+    items.forEach((el, idx) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        setActive(idx);
+      });
+    });
+
+    // Oklar
+    if (prevBtn) prevBtn.addEventListener('click', (e) => { 
+      e.preventDefault(); 
+      setActive(current - 1); 
+    });
+    if (nextBtn) nextBtn.addEventListener('click', (e) => { 
+      e.preventDefault(); 
+      setActive(current + 1); 
+    });
+
+    // Hover'da durdur / çıkınca başlat (hem liste hem görsel alanı)
+    const viewport = listEl.parentElement || listEl;
+    [viewport, imagesEl].forEach(el => {
+      el.addEventListener('mouseenter', stopAuto);
+      el.addEventListener('mouseleave', startAuto);
+    });
+
+    // Sekme görünmez olunca durdur, geri gelince başlat
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopAuto(); 
+      else startAuto();
+    });
+
+    // Başlat
+    setActive(current);
+    startAuto && startAuto();
+    window.addEventListener('resize', updateListPosition);
   }
 
-  // Tıklama
-  items.forEach((el, idx) => {
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      setActive(idx);
-    });
-  });
+  // Carousel'leri başlat
+  attachProductCarousel('machine', { interval: 4000, startIndex: 'middle' });
+  attachProductCarousel('pulley', { interval: 4000, startIndex: 'middle' });
 
-  // Oklar
-  if (prevBtn) prevBtn.addEventListener('click', (e) => { e.preventDefault(); setActive(current - 1); });
-  if (nextBtn) nextBtn.addEventListener('click', (e) => { e.preventDefault(); setActive(current + 1); });
-
-  // Hover'da durdur / çıkınca başlat (hem liste hem görsel alanı)
-  const viewport = listEl.parentElement || listEl;
-  [viewport, imagesEl].forEach(el => {
-    el.addEventListener('mouseenter', stopAuto);
-    el.addEventListener('mouseleave', startAuto);
-  });
-
-  // Sekme görünmez olunca durdur, geri gelince başlat
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) stopAuto(); else startAuto();
-  });
-
-  // Başlat
-  setActive(current);
-  startAuto && startAuto();
-window.addEventListener('resize', updateListPosition);
-}
-
-
-attachProductCarousel('machine', { interval: 4000, startIndex: 'middle' });
-attachProductCarousel('pulley',  { interval: 4000, startIndex: 'middle' });
-
-  // --- Haberler karuseli ---
+  /* === Haberler Carousel === */
   (function initNewsCarousel() {
     const wrap = document.getElementById('news-carousel');
     const prev = document.getElementById('news-prev');
@@ -645,7 +660,6 @@ attachProductCarousel('pulley',  { interval: 4000, startIndex: 'middle' });
 
     // Adım: kart genişliği + gap kadar kaydır
     const sampleItem = wrap.querySelector('.urunler-news-item') || wrap.firstElementChild;
-    // Gap okumayı dener, yoksa 40px (CSS'te gap:40px) alır
     const styles = window.getComputedStyle(wrap);
     const gap = parseInt(styles.columnGap || styles.gap || '40', 10) || 40;
     const step = sampleItem ? (sampleItem.getBoundingClientRect().width + gap) : Math.max(320, wrap.clientWidth * 0.8);
@@ -654,25 +668,31 @@ attachProductCarousel('pulley',  { interval: 4000, startIndex: 'middle' });
       wrap.scrollBy({ left: dir * step, behavior: 'smooth' });
     }
 
-    if (prev) prev.addEventListener('click', (e) => { e.preventDefault(); scrollByStep(-1); });
-    if (next) next.addEventListener('click', (e) => { e.preventDefault(); scrollByStep(1); });
+    if (prev) prev.addEventListener('click', (e) => { 
+      e.preventDefault(); 
+      scrollByStep(-1); 
+    });
+    if (next) next.addEventListener('click', (e) => { 
+      e.preventDefault(); 
+      scrollByStep(1); 
+    });
   })();
 })();
 
-
+/* ===== 15. FOOTER VE SCROLL EFEKTLERİ ===== */
 // Footer görünürken split-line ve sosyal ikonları gizle
 (() => {
   const footer = document.querySelector('.footer');
-  const split  = document.querySelector('.split-line');
+  const split = document.querySelector('.split-line');
   const social = document.querySelector('.social-media');
 
   if (!footer) return;
 
   const io = new IntersectionObserver(([entry]) => {
     const hide = entry.isIntersecting; // footer ekranda mı?
-    if (split)  split.style.opacity  = hide ? '0' : '1';
+    if (split) split.style.opacity = hide ? '0' : '1';
     if (social) {
-      social.style.opacity       = hide ? '0' : '1';
+      social.style.opacity = hide ? '0' : '1';
       social.style.pointerEvents = hide ? 'none' : 'auto';
     }
   }, { threshold: 0.1 });
@@ -680,16 +700,10 @@ attachProductCarousel('pulley',  { interval: 4000, startIndex: 'middle' });
   io.observe(footer);
 })();
 
-
-
-/* footer-map hover efekti (opsiyonel) */
+/* === Footer Map Hover Efekti === */
 document.querySelectorAll('.footer-map').forEach(box => {
   const frame = box.querySelector('iframe');
   if (!frame) return;
   box.addEventListener('mouseenter', () => frame.style.opacity = '.38');
   box.addEventListener('mouseleave', () => frame.style.opacity = '.28');
 });
-
-
-
-
