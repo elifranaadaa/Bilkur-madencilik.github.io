@@ -2795,3 +2795,129 @@ body.menu-open {
     .legal-links { gap: 10px; }
     .chip { padding: 8px 12px; font-size: 12.5px; }
 }
+
+
+
+
+/* ==============================================
+   MOBİL HEADER KAYMA SORUNU DÜZELTMESİ
+   ============================================== */
+
+/* 1. Mobil için tutarlı header yükseklikleri */
+@media (max-width: 1024px) {
+  :root {
+    --mheader: 82px; /* Sabit mobil header yüksekliği */
+    --bbh: 80px;     /* Bottom bar yüksekliği */
+  }
+
+  /* Header sabit yükseklik - kayma önlenir */
+  .header {
+    height: var(--mheader) !important;
+    min-height: var(--mheader);
+    max-height: var(--mheader);
+    transition: background 0.3s ease, box-shadow 0.3s ease; /* Yükseklik geçişi kaldırıldı */
+  }
+
+  /* Scroll durumunda da aynı yükseklik */
+  .header.scrolled {
+    height: var(--mheader) !important;
+    background: var(--white);
+    box-shadow: var(--shadow-header);
+  }
+
+  /* Header container padding optimizasyonu */
+  .header-container {
+    padding: 0 16px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+
+  .logo img {
+    max-height: 50px; /* Logo yükseklik sınırı */
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* Body padding bottom bar için */
+  body {
+    padding-bottom: var(--bbh);
+    scroll-padding-top: var(--mheader);
+  }
+
+    .header-left {
+    flex: 1;                        /* alanı kaplasın */
+    display: flex;
+    justify-content: center;         /* yatayda ortala */
+    margin-left: 0;                  /* soldaki boşluğu kaldır */
+    gap: 0;                          /* menü boşlukları silinsin */
+  }
+
+  .logo {
+    margin: 0 auto;                  /* ortalanma garantisi */
+    width: 180px;                    /* isteğe göre küçült/büyüt */
+  }
+
+  /* Menü ikonları sağda kalsın */
+  .header-right {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+}
+
+/* 2. Tablet özel düzenlemeler */
+@media (max-width: 768px) {
+  :root {
+    --mheader: 75px; /* Tablet için biraz daha küçük */
+  }
+
+}
+
+/* 3. Küçük telefon ekranları */
+@media (max-width: 480px) {
+  :root {
+    --mheader: 70px; /* En küçük header */
+  }
+
+  .header-container {
+    padding: 0 12px;
+  }
+
+  .logo {
+    width: 140px;
+  }
+
+  .logo img {
+    max-height: 45px;
+  }
+
+}
+
+/* 4. Bottom bar ile çakışma önleme */
+@media (max-width: 1024px) {
+  .bottom-bar {
+    position: fixed;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 32px);
+    max-width: 760px;
+    height: auto;
+    min-height: 68px;
+    z-index: 120;
+  }
+
+}
+
+
+/* 6. Landscape mod düzeltmeleri */
+@media (max-width: 1024px) and (orientation: landscape) {
+  :root {
+    --mheader: 65px; /* Landscape'de daha kompakt */
+  }
+}
