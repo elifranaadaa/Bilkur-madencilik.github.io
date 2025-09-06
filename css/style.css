@@ -633,12 +633,12 @@ body.menu-open{overflow:hidden}
 }
 
 @media (max-width: 480px) {
-  .hero-content {
-    display: none !important;
-  }
-  
-  .carousel-controls {
-    display: none !important;
+    .hero-content {
+    left: 0;
+    right: auto;
+    transform: none;
+    padding: 0 30px;
+    bottom: 100px;
   }
 
     .header-cta {
@@ -749,16 +749,16 @@ body.menu-open{overflow:hidden}
   .header-container{padding:0 15px}
   .carousel-btn svg{width:12px;height:12px}
   .dropdown-inner{padding:0 15px}
-  .hero-content{ bottom:150px; padding:0 15px; }
-  .hero-text{ max-width:460px; text-align:left; }
-  .hero-title{ font-size:32px; text-align:left; }
-  .hero-description{ font-size:15px; text-align:left; }
+  .hero-content{ bottom:35px; padding:0 15px; }
+  .hero-title{ font-size:15px; text-align:left; margin-bottom: 10px;}
+  .hero-description{ font-size:10px; text-align:left; }
   .header-left{margin-left: 0px;}
   .carousel-controls{
     left:15px;
-    bottom:95px;
+    bottom:0px;
   }
-  .carousel-btn{ width:36px; height:36px; }
+  .carousel-btn{width: 30px;
+        height: 28px;}
 }
 
 
