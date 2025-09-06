@@ -176,7 +176,7 @@ body{
   pointer-events: auto;
 }
 .dropdown-gradient{position:absolute;bottom:-50px;left:-200px;transform:translateY(50%);width:790px;height:790px;border-radius:50%;opacity:.3;background:radial-gradient(50% 50% at 50% 50%, var(--primary-color) 0%, rgba(250,176,42,0) 100%)}
-.dropdown-inner{max-width:1600px;margin:0 auto;padding:0 107px 0 140px;position:relative}
+.dropdown-inner{margin:0 auto;padding:0 107px 0 140px;position:relative}
 .dropdown-wrapper{display:grid;grid-template-columns:minmax(55%,min-content) minmax(35%,min-content);gap:20px}
 .dropdown-list-field{padding:45px 0}
 .dropdown-list{list-style:none;position:relative}
@@ -2397,3 +2397,4 @@ display: none;
     .copyright-bottom a:hover {
       color: var(--brand);
     }
+
