@@ -35,7 +35,58 @@
       <nav class="nav" id="nav">
         <div class="nav-item"><a href="#" class="nav-link">Ana Sayfa</a></div>
         <div class="nav-item"><a href="#" class="nav-link">Hakkımızda</a></div>
-        <div class="nav-item"><a href="#" class="nav-link">Ürünlerimiz</a></div>
+        <!-- ÜRÜNLERİMİZ (MEGA DROPDOWN) -->
+<div class="nav-item nav-has-dropdown">
+  <a href="#" class="nav-link">Ürünlerimiz</a>
+
+  <div class="nav-dropdown" role="menu" aria-label="Ürünlerimiz menüsü">
+    <div class="dropdown-content">
+      <span class="dropdown-gradient" aria-hidden="true"></span>
+
+      <div class="dropdown-inner">
+<div class="dropdown-wrapper is-sarma">
+  <!-- Sol: Kategoriler (sadece başlıklar) -->
+  <aside class="dropdown-cats" role="tablist" aria-label="Ürün kategorileri">
+    <button class="cat-btn active" role="tab" aria-selected="true" data-panel="cat-endustriyel">
+      Endüstriyel Tuzlar
+    </button>
+    <button class="cat-btn" role="tab" aria-selected="false" data-panel="cat-tarim">
+      Tarım &amp; Hayvancılık
+    </button>
+  </aside>
+
+  <!-- Sağ: Paneller (aktif kategoriye göre görünür) -->
+  <section class="dropdown-panels">
+    <!-- ENDÜSTRİYEL -->
+    <div id="cat-endustriyel" class="dropdown-panel active" role="tabpanel">
+      <ul class="panel-grid">
+        <li><a href="#">İnce Öğütülmüş Rafine Tuz</a></li>
+        <li><a href="#">Tablet (Su Yumuşatma) Tuzu</a></li>
+        <li><a href="#">De-icing / Yol Tuzu</a></li>
+        <li><a href="#">Gıda Üretimi için Rafine Tuz</a></li>
+        <li><a href="#">Su Arıtma Tuzu</a></li>
+        <li><a href="#">Cam / Kimya Sanayi Tuzu</a></li>
+      </ul>
+    </div>
+
+    <!-- TARIM -->
+    <div id="cat-tarim" class="dropdown-panel" role="tabpanel" hidden>
+      <ul class="panel-grid">
+        <li><a href="#">Yemlik Kaya Tuzu (Blok)</a></li>
+        <li><a href="#">İri Tane Tuz</a></li>
+        <li><a href="#">Özel Karışım Mineraller</a></li>
+        <li><a href="#">Mineral Taşlar</a></li>
+        <li><a href="#">Seracılık için Tuz</a></li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+      </div>
+    </div> <!-- /.dropdown-content -->
+  </div> <!-- /.nav-dropdown -->
+</div>
+
         <div class="nav-item"><a href="#" class="nav-link">Medya</a></div>
         <div class="nav-item"><a href="#" class="nav-link">Bize Ulaşın</a></div>
         <div class="nav-item"><a href="#" class="nav-link">Bize Ulaşın</a></div>
@@ -438,6 +489,18 @@
                       <i class="fas fa-arrow-right"></i>
                     </a>
                   </div>
+                                    <div class="urunler-product-item">
+                    <a class="urunler-product-link" href="#">
+                      <div class="urunler-product-title">Ürün Adı Buraya</div>
+                      <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                                    <div class="urunler-product-item">
+                    <a class="urunler-product-link" href="#">
+                      <div class="urunler-product-title">Ürün Adı Buraya</div>
+                      <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
                   <div class="urunler-product-item">
                     <a class="urunler-product-link" href="#">
                       <div class="urunler-product-title">Ürün Adı Buraya</div>
@@ -761,7 +824,7 @@
 
           <div class="footer-bottom">
       <div class="footer-bottom-wrap">
-        <div class="copyright">
+        <div class="copyright-bottom">
           © <a href="#">Copyright</a> 2025
           <a href="#">Bilkur Madencilik</a> Tüm Hakları Saklıdır.
         </div>
