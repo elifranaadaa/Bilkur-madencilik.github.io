@@ -2806,8 +2806,8 @@ body.menu-open {
 /* 1. Mobil için tutarlı header yükseklikleri */
 @media (max-width: 1024px) {
   :root {
-    --mheader: 82px; /* Sabit mobil header yüksekliği */
-    --bbh: 80px;     /* Bottom bar yüksekliği */
+    --mheader: 82px;
+    --bbh: 80px;
   }
 
   /* Header sabit yükseklik - kayma önlenir */
@@ -2815,7 +2815,7 @@ body.menu-open {
     height: var(--mheader) !important;
     min-height: var(--mheader);
     max-height: var(--mheader);
-    transition: background 0.3s ease, box-shadow 0.3s ease; /* Yükseklik geçişi kaldırıldı */
+    transition: background 0.3s ease, box-shadow 0.3s ease;
   }
 
   /* Scroll durumunda da aynı yükseklik */
@@ -2848,16 +2848,16 @@ body.menu-open {
   }
 
     .header-left {
-    flex: 1;                        /* alanı kaplasın */
+    flex: 1;
     display: flex;
-    justify-content: center;         /* yatayda ortala */
-    margin-left: 0;                  /* soldaki boşluğu kaldır */
-    gap: 0;                          /* menü boşlukları silinsin */
+    justify-content: center;
+    margin-left: 0;
+    gap: 0;
   }
 
   .logo {
-    margin: 0 auto;                  /* ortalanma garantisi */
-    width: 180px;                    /* isteğe göre küçült/büyüt */
+    margin: 0 auto;
+    width: 180px;
   }
 
   /* Menü ikonları sağda kalsın */
@@ -2873,7 +2873,7 @@ body.menu-open {
 /* 2. Tablet özel düzenlemeler */
 @media (max-width: 768px) {
   :root {
-    --mheader: 75px; /* Tablet için biraz daha küçük */
+    --mheader: 75px;
   }
 
 }
@@ -2881,7 +2881,7 @@ body.menu-open {
 /* 3. Küçük telefon ekranları */
 @media (max-width: 480px) {
   :root {
-    --mheader: 70px; /* En küçük header */
+    --mheader: 70px; 
   }
 
   .header-container {
@@ -2918,6 +2918,6 @@ body.menu-open {
 /* 6. Landscape mod düzeltmeleri */
 @media (max-width: 1024px) and (orientation: landscape) {
   :root {
-    --mheader: 65px; /* Landscape'de daha kompakt */
+    --mheader: 65px;
   }
 }
