@@ -156,10 +156,26 @@ body{
     color: rgba(0, 0, 0, 0.8);}
 
 /* ===== Dropdown ===== */
-.nav-dropdown{position:absolute;top:100%;left:50%;transform:translateX(-50%);width:100vw;background:#fff;box-shadow:var(--shadow-header);opacity:0;visibility:hidden;transform:translateX(-50%) translateY(10px);transition:all .35s ease .1s;z-index:1000;pointer-events:none}
-.nav-item:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);pointer-events:auto}
-.dropdown-content{background:linear-gradient(180deg,#FFF9EB 0%,#FFF 99.99%);min-height:auto;position:relative;overflow:hidden}
-.dropdown-gradient{position:absolute;z-index:10;bottom:-50px;left:-200px;transform:translateY(50%);width:790px;height:790px;border-radius:50%;opacity:.3;background:radial-gradient(50% 50% at 50% 50%, var(--primary-color) 0%, rgba(250,176,42,0) 100%)}
+.nav-dropdown{
+  position: fixed;          /* absolute → fixed */
+  left: 0;
+  right: 0;
+  width: 100vw;
+  background: #fff;
+  box-shadow: var(--shadow-header);
+  opacity: 0;
+  visibility: hidden;
+  transform: none;          /* translateX(-50%) kaldırıldı */
+  transition: all .35s ease .1s;
+  z-index: 1000;
+  pointer-events: none;
+}
+.nav-item:hover .nav-dropdown{
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.dropdown-gradient{position:absolute;bottom:-50px;left:-200px;transform:translateY(50%);width:790px;height:790px;border-radius:50%;opacity:.3;background:radial-gradient(50% 50% at 50% 50%, var(--primary-color) 0%, rgba(250,176,42,0) 100%)}
 .dropdown-inner{max-width:1600px;margin:0 auto;padding:0 107px 0 140px;position:relative}
 .dropdown-wrapper{display:grid;grid-template-columns:minmax(55%,min-content) minmax(35%,min-content);gap:20px}
 .dropdown-list-field{padding:45px 0}
@@ -183,7 +199,20 @@ body{
 .dropdown-image-field{display:flex;align-items:center;justify-content:center;padding:120px 0}
 .dropdown-image{width:100%;height:350px;border-radius:20px;overflow:hidden;position:relative}
 .dropdown-image img{width:100%;height:100%;object-fit:cover}
+/* Dropdown açıkken header’ı beyaza al ve scrolled gibi davransın */
+.header.on-mega{
+  background: #fff;
+  height: auto;
+  box-shadow: var(--shadow-header);
+  border-bottom-color: transparent;
+}
 
+/* On-mega durumunda koyu logo ve koyu menü yazıları */
+.header.on-mega .logo-white{ opacity: 0; }
+.header.on-mega .logo-dark{  opacity: 1; }
+.header.on-mega .nav-link{   color: var(--text-dark); }
+.header.on-mega .header-sep{ background: rgba(0,0,0,.08); }
+.header.scrolled .nav-dropdown{ top: 95px; }
 
 /* === Sarmakina tarzı mega menü düzeni === */
 .dropdown-wrapper.is-sarma{
