@@ -12,6 +12,33 @@
   --urunler-bg: #1a1a1b; 
   --footer-bg: #141414; 
 }
+/* Genel geçiş gölge stili */
+.section-shadow {
+  position: relative;
+  z-index: 1;
+}
+
+.section-shadow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 180px;  /* gölgenin kalınlığı */
+  pointer-events: none;
+background: linear-gradient(to bottom, rgb(0 0 0 / 7%) 0%, /* en koyu */ rgb(0 0 0) 40%, /* orta */ rgb(0 0 0) 70%, /* hafif */ rgb(0 0 0 / 84%) 100% /* tamamen şeffaf */);
+  filter: blur(18px); 
+  z-index: 5;
+    width: 120%;     /* genişliği büyüt */
+  left: -10%; 
+}
+
+
+/* Üstten gölge */
+.section-shadow::before {
+  top: -100px;
+}
+
+
 :root{ --mheader: 82px; }  /* mobil/tablet üst şerit yüksekliği */
 body{
   font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
