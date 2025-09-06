@@ -716,11 +716,9 @@ document.querySelectorAll('.footer-map').forEach(box => {
 
 // Mobil viewport yükseklik düzeltmesi (iOS Safari için)
 function setMobileViewport() {
-  // Gerçek viewport yüksekliğini al
   const vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
   
-  // Mobil header yüksekliğini dinamik olarak ayarla
   const isMobile = window.innerWidth <= 1024;
   if (isMobile) {
     const headerHeight = window.innerWidth <= 480 ? 70 : window.innerWidth <= 768 ? 75 : 82;
@@ -732,10 +730,9 @@ function setMobileViewport() {
 window.addEventListener('load', setMobileViewport);
 window.addEventListener('resize', setMobileViewport);
 window.addEventListener('orientationchange', () => {
-  setTimeout(setMobileViewport, 100); // Orientation change sonrası küçük gecikme
+  setTimeout(setMobileViewport, 100); 
 });
 
-// Header scroll davranışını mobilde optimize et
 function optimizeMobileHeader() {
   const header = document.getElementById('header');
   if (!header) return;
@@ -743,13 +740,11 @@ function optimizeMobileHeader() {
   const isMobile = window.innerWidth <= 1024;
   
   if (isMobile) {
-    // Mobilde header yüksekliği sabit kalsın
     let lastScrollY = window.scrollY;
     
     window.addEventListener('scroll', () => {
       const currentScrollY = window.scrollY;
       
-      // Sadece background ve shadow değişsin, yükseklik değişmesin
       if (currentScrollY > 10) {
         header.classList.add('scrolled');
       } else {
@@ -761,27 +756,21 @@ function optimizeMobileHeader() {
   }
 }
 
-// Mobil optimizasyonları başlat
 document.addEventListener('DOMContentLoaded', () => {
   optimizeMobileHeader();
   
-  // Touch event optimizasyonları
   const isMobile = window.innerWidth <= 1024;
   if (isMobile) {
-    // Passive touch listeners for better performance
     document.addEventListener('touchstart', () => {}, { passive: true });
     document.addEventListener('touchmove', () => {}, { passive: true });
   }
 });
 
-// iOS Safari için özel düzeltmeler
 if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-  // Address bar gizlenme/gösterilme durumunda layout düzelt
   window.addEventListener('resize', () => {
     setTimeout(() => {
       setMobileViewport();
       
-      // Hero yüksekliğini yeniden hesapla
       const hero = document.querySelector('.hero');
       if (hero) {
         const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--mheader'));
@@ -791,12 +780,10 @@ if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
   });
 }
 
-// Touch cihazlarda hover efektlerini optimize et
 function optimizeTouchDevices() {
   if ('ontouchstart' in window) {
     document.body.classList.add('touch-device');
     
-    // CSS'te .touch-device sınıfı için hover efektlerini kapat
     const style = document.createElement('style');
     style.textContent = `
       .touch-device .nav-link:hover::before,
@@ -809,10 +796,8 @@ function optimizeTouchDevices() {
   }
 }
 
-// Touch optimizasyonlarını başlat
 document.addEventListener('DOMContentLoaded', optimizeTouchDevices);
 
-// Keyboard açılma/kapanma durumunda layout düzeltmesi (Android)
 if (/Android/.test(navigator.userAgent)) {
   const initialViewportHeight = window.innerHeight;
   
@@ -820,12 +805,11 @@ if (/Android/.test(navigator.userAgent)) {
     const currentViewportHeight = window.innerHeight;
     const heightDifference = initialViewportHeight - currentViewportHeight;
     
-    // Keyboard açıksa bottom bar'ı gizle
     const bottomBar = document.querySelector('.bottom-bar');
     if (bottomBar) {
-      if (heightDifference > 150) { // Keyboard açık
+      if (heightDifference > 150) {
         bottomBar.style.transform = 'translateX(-50%) translateY(100px)';
-      } else { // Keyboard kapalı
+      } else { 
         bottomBar.style.transform = 'translateX(-50%) translateY(0)';
       }
     }
