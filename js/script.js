@@ -276,6 +276,25 @@ function updateHeaderOnScroll() {
 window.addEventListener('load', updateHeaderOnScroll, { passive: true });
 window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
 
+// Mega menü açılıp kapanırken header'ı beyaza çevir
+const headerEl2 = document.getElementById('header');
+document.querySelectorAll('.nav-item.nav-has-dropdown').forEach(item => {
+  const dropdown = item.querySelector('.nav-dropdown');
+
+  const openMenu = () => headerEl2 && headerEl2.classList.add('on-mega');
+  const closeMenu = (e) => {
+    // Eğer fare dropdown içindeyse kapanmasın
+    if (dropdown && dropdown.contains(e.relatedTarget)) return;
+    headerEl2 && headerEl2.classList.remove('on-mega');
+  };
+
+  item.addEventListener('mouseenter', openMenu);
+  item.addEventListener('mouseleave', closeMenu);
+  if (dropdown) {
+    dropdown.addEventListener('mouseleave', closeMenu);
+    dropdown.addEventListener('mouseenter', openMenu);
+  }
+});
 
 
 // Stat number animasyonu
@@ -670,3 +689,7 @@ document.querySelectorAll('.footer-map').forEach(box => {
   box.addEventListener('mouseenter', () => frame.style.opacity = '.38');
   box.addEventListener('mouseleave', () => frame.style.opacity = '.28');
 });
+
+
+
+
