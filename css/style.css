@@ -209,10 +209,29 @@ body{
 
 /* On-mega durumunda koyu logo ve koyu menü yazıları */
 .header.on-mega .logo-white{ opacity: 0; }
+.header.on-mega .logo img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    transition: opacity .35s ease;
+}
+.header.on-mega .language-switcher {
+    display: flex
+;
+    align-items: center;
+    gap: 7px;
+    padding: 12px 25px;
+    border-radius: 20px;
+    background: rgba(82, 82, 82, 0.1);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    transition: all .35s ease;
+    position: relative;
+    color: rgba(0, 0, 0, 0.8);
+  }
 .header.on-mega .logo-dark{  opacity: 1; }
 .header.on-mega .nav-link{   color: var(--text-dark); }
 .header.on-mega .header-sep{ background: rgba(0,0,0,.08); }
-.header.scrolled .nav-dropdown{ top: 95px; }
 
 /* === Sarmakina tarzı mega menü düzeni === */
 .dropdown-wrapper.is-sarma{
@@ -2383,4 +2402,3 @@ display: none;
     .copyright-bottom a:hover {
       color: var(--brand);
     }
-
