@@ -131,7 +131,7 @@ body{
 /* ===== Dropdown ===== */
 .nav-dropdown{position:absolute;top:100%;left:50%;transform:translateX(-50%);width:100vw;background:#fff;box-shadow:var(--shadow-header);opacity:0;visibility:hidden;transform:translateX(-50%) translateY(10px);transition:all .35s ease .1s;z-index:1000;pointer-events:none}
 .nav-item:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);pointer-events:auto}
-.dropdown-content{background:linear-gradient(180deg,#FFF9EB 0%,#FFF 99.99%);min-height:325px;position:relative;overflow:hidden}
+.dropdown-content{background:linear-gradient(180deg,#FFF9EB 0%,#FFF 99.99%);min-height:auto;position:relative;overflow:hidden}
 .dropdown-gradient{position:absolute;z-index:10;bottom:-50px;left:-200px;transform:translateY(50%);width:790px;height:790px;border-radius:50%;opacity:.3;background:radial-gradient(50% 50% at 50% 50%, var(--primary-color) 0%, rgba(250,176,42,0) 100%)}
 .dropdown-inner{max-width:1600px;margin:0 auto;padding:0 107px 0 140px;position:relative}
 .dropdown-wrapper{display:grid;grid-template-columns:minmax(55%,min-content) minmax(35%,min-content);gap:20px}
@@ -156,6 +156,81 @@ body{
 .dropdown-image-field{display:flex;align-items:center;justify-content:center;padding:120px 0}
 .dropdown-image{width:100%;height:350px;border-radius:20px;overflow:hidden;position:relative}
 .dropdown-image img{width:100%;height:100%;object-fit:cover}
+
+
+/* === Sarmakina tarzı mega menü düzeni === */
+.dropdown-wrapper.is-sarma{
+  display:grid;
+  grid-template-columns: 280px 1fr; /* solda sabit kategori sütunu */
+  gap: 48px;
+}
+
+/* Sol kategori sütunu */
+.dropdown-cats{
+  position: relative;
+  padding: 42px 0 42px 24px;
+}
+.dropdown-cats::before{
+  content:"";
+  position:absolute; left:0; top:0; bottom:0;
+  width:1px; background:rgba(0,0,0,.08);
+}
+.cat-btn{
+  display:block;
+  width:100%;
+  text-align:left;
+  padding:14px 12px 14px 18px;
+  background:transparent;
+  border:0; cursor:pointer;
+  font-size:28px; line-height:1.2;
+  color:#9c9c9c; font-weight:300;
+  transition: color .25s ease, transform .25s ease;
+}
+.cat-btn + .cat-btn{ margin-top:26px; }
+.cat-btn:hover{ color:#3a3a3a; transform:translateX(2px); }
+.cat-btn.active{
+  color:#111; font-weight:500;
+  position:relative;
+}
+.cat-btn.active::before{
+  content:"";
+  position:absolute; left:-24px; top:50%;
+  transform:translateY(-50%);
+  width:4px; height:36px; border-radius:2px;
+  background:var(--primary-color); /* sarı vurgu çizgisi */
+}
+
+/* Sağ panel alanı */
+.dropdown-panels{ padding:42px 0; }
+
+/* Sadece aktif panel görünsün */
+.dropdown-panel{ animation: fadeIn .25s ease; }
+.dropdown-panel[hidden]{ display:none !important; }
+
+/* 3 kolona kadar otomatik akış */
+.panel-grid{
+  list-style:none; margin:0; padding:0;
+  display:grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 18px 80px; /* satır / sütun boşlukları */
+}
+.panel-grid a{
+  display:block;
+  padding:10px 0;
+  color:#6b6b6b; text-decoration:none; font-size:20px; font-weight:300;
+  transition:color .25s ease, transform .25s ease;
+}
+.panel-grid a:hover{ color:#111; transform:translateX(2px); }
+
+@keyframes fadeIn { from{opacity:0; transform:translateY(4px)} to{opacity:1; transform:none} }
+
+/* Daha küçük genişliklerde 2 kolona düşsün */
+@media (max-width: 1400px){
+  .panel-grid{ grid-template-columns: repeat(2, minmax(220px,1fr)); }
+}
+
+/* Mobilde (<=1200) zaten mega menü kapalı kalıyor */
+
 
 /* Right side */
 .language-switcher{display:flex;align-items:center;gap:7px;padding:12px 25px;border-radius:20px;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);cursor:pointer;transition:all .35s ease;position:relative;color:rgba(255,255,255,.8)}
@@ -1387,7 +1462,7 @@ body.menu-open{overflow:hidden}
   bottom:0; height: 120px;
 }
 .urunler-product-item.active .urunler-product-link{border-left-color: var(--urunler-accent);}
-.urunler-product-title{text-align:left;position:relative;z-index:2;font-size:28px;line-height:1.2;font-weight:300;color:rgba(255,255,255,.35);transition:.35s}
+.urunler-product-title{text-align:left;position:relative;z-index:2;font-size:35px;line-height:1.2;font-weight:300;color:rgba(255,255,255,.35);transition:.35s}
 @media (max-width:1200px){.urunler-product-title{font-size:24px}}
 @media (max-width:640px){.urunler-product-title{text-align:center;font-size:20px}}
 .urunler-product-item:hover .urunler-product-title{color:rgba(255,255,255,.66)}
@@ -1670,8 +1745,6 @@ display: none;
       max-width: 1880px;
       margin: 0 auto;
       background: var(--card);
-      border-radius: var(--radius);
-      overflow: hidden;
       position: relative;
     }
 
@@ -1700,6 +1773,7 @@ display: none;
       padding: 120px 80px;
       gap: 28px;
       justify-content: space-between;
+      border-radius: 40px;
     }
 
     .footer-logo img {
@@ -1878,6 +1952,10 @@ display: none;
       flex-wrap: wrap;
     }
 
+    .footer-bottom{
+      margin-left: 50px;
+    }
+
     .copyright {
       color: var(--soft);
       font-size: 16px;
@@ -1905,6 +1983,10 @@ display: none;
     }
 
     @media (max-width: 1024px) {
+      .footer{
+        margin-bottom: 80px;
+      }
+
       .footer-wrap {
         flex-direction: column;
       }
@@ -1935,6 +2017,10 @@ display: none;
     max-width: 250px;
       }
 
+      .footer-bottom{
+  margin-left: 50px;
+}
+
       .social-icons {
     display: flex;
     flex-direction: column;}
@@ -1947,6 +2033,7 @@ display: none;
         @media (max-width: 768px) {
       .footer {
         padding: 30px 16px;
+        margin-bottom: 80px;
       }
       
       .footer-right {
@@ -1991,6 +2078,15 @@ display: none;
     max-width: 200px;
   }
 
+  .copyright-bottom{
+  font-size: 10px !important;
+  
+}
+
+.footer-bottom{
+  margin-left: 50px;
+}
+
 .footer-product-sec {
     display: flex;
     flex-direction: row;
@@ -2019,6 +2115,7 @@ display: none;
     @media (max-width: 480px) {
       .footer {
         padding: 30px 16px;
+        margin-bottom: 80px;
       }
       
       .footer-right {
@@ -2053,7 +2150,19 @@ display: none;
 
 .footer-col--map {
     display: flex;
+    justify-content: center !important; 
+}
+
+.footer-bottom-wrap{
     justify-content: center;
+}
+
+.copyright-bottom{
+  font-size: 10px !important;
+}
+
+.footer-bottom{
+  margin-left: 0;
 }
 
 .footer-notch img {
@@ -2210,4 +2319,25 @@ display: none;
       letter-spacing: 1px;
       text-transform: uppercase;
       margin-bottom: 30px;
+    }
+
+        .copyright-bottom {
+      color: var(--soft);
+      font-size: 16px;
+      position: absolute;
+    display: inline-block;
+    background: var(--footer-bg);
+    color: #eaeaea;
+    font-size: 15px;
+    padding: 14px 22px;
+    border-radius: 13px;
+    }
+
+        .copyright-bottom a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .copyright-bottom a:hover {
+      color: var(--brand);
     }
