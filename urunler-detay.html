@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <!-- MOBİL OPTİMİZASYON - KAYMA SORUNU DÜZELTMESİ -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  
+  <!-- iOS Safari için özel meta etiketler -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  
+  <!-- Android Chrome için -->
+  <meta name="theme-color" content="#17181a">
+  <meta name="mobile-web-app-capable" content="yes">
+  
+  <title>Bilkur Madencilik – Yenilikçi Teknoloji, Güçlü Çözümler</title>
+  <meta name="description" content="Bilkur Madencilik olarak müşteri memnuniyetini her zaman ön planda tutuyoruz. Uzman ekibimiz size özel çözümler sunmak için burada.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icon.png">
+  <link rel="apple-touch-icon" href="assets/icon.png">
+  
+  <!-- CSS & Fonts -->
+  <link rel="stylesheet" href="css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <!-- ===== SPLIT LINE (DESKTOP) ===== -->
+  <div class="split-line"></div>
+
+  <!-- ===== HEADER & NAVİGASYON ===== -->
+  <header class="header" id="header">
+    <div class="header-container">
+      
+      <!-- Sol Grup: Logo + Ana Menü -->
+      <div class="header-left">
+        <a href="#" class="logo" aria-label="Bilkur Madencilik">
+          <img src="assets/logob.png" alt="Bilkur Madencilik" class="logo-white">
+          <img src="assets/logo.png"  alt="Bilkur Madencilik" class="logo-dark">
+        </a>
+        
+        <!-- Ana Navigasyon Menüsü -->
+        <nav class="nav" id="nav">
+          <div class="nav-item">
+            <a href="index.html" class="nav-link">Ana Sayfa</a>
+          </div>
+          <div class="nav-item">
+            <a href="hakkimizda.html" class="nav-link">Hakkımızda</a>
+          </div>
+          
+          <!-- Ürünlerimiz Dropdown -->
+          <div class="nav-item nav-has-dropdown-simple">
+            <a href="urunler-kategori.html" class="nav-link">Ürünler</a>
+            <div class="nav-dropdown-simple" role="menu" aria-label="Ürünler menüsü">
+              <a href="urunler-detay.html" class="simple-dd-item">Kauçuk Karışımlar</a>
+              <a href="urunler-detay.html" class="simple-dd-item">Kullanım Alanları</a>
+            </div>
+          </div>
+
+          <div class="nav-item">
+            <a href="#" class="nav-link">Medya</a>
+          </div>
+          <div class="nav-item">
+            <a href="iletisim.html" class="nav-link">Bize Ulaşın</a>
+          </div>
+        </nav>
+      </div>
+
+      <!-- Teklif Al Butonu -->
+      <a href="siparis-formu.html" class="header-cta">Teklif Al</a>
+
+      <!-- Sağ Grup: Dil Seçimi + Mobil Buton -->
+      <div class="header-right">
+        <div class="header-sep" aria-hidden="true"></div>
+        
+        <!-- Dil Değiştirici -->
+        <div class="language-switcher" id="languageSwitcher">
+          <img src="assets/flag-tr.webp" alt="TR">
+          <span>TR</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <path d="M2 4l4 4 4-4"/>
+          </svg>
+          <div class="language-dropdown">
+            <a href="#" class="language-option">
+              <img src="assets/flag-en.png" alt="EN">
+              <span>EN</span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Mobil Menü Butonu -->
+        <div class="mobile-menu-btn" id="mobileMenuBtn">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== SOSYAL MEDYA LİNKLERİ (DESKTOP) ===== -->
+  <div class="social-media">
+    <a href="#" class="social-link" aria-label="LinkedIn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.063 2.063 0 1.139-.925 2.065-2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      </svg>
+    </a>
+    <a href="#" class="social-link" aria-label="YouTube">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+      </svg>
+    </a>
+  </div>
+
+<section class="page-header">
+  <img src="assets/bg-1.webp" alt="Hakkımızda" class="page-header-img">
+  <div class="page-header-overlay"></div>
+  <div class="page-header-content">
+    <nav class="breadcrumb">
+      <a href="index.html">Anasayfa</a>
+      <span> > </span>
+      <span>Teklif Al</span>
+    </nav>
+    <h1 class="page-title">Ön Sipariş</h1>
+  </div>
+</section>
+
+  <!-- ===== MOBİL/TABLET NAVİGASYONU ===== -->
+  
+  <!-- Bottom Bar -->
+  <nav class="bottom-bar" id="bottomBar" aria-label="Alt gezinme">
+    <a href="index.html" class="bb-item" aria-label="Ana sayfa">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11l9-8 9 8"></path>
+        <path d="M5 10v10a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V10"></path>
+      </svg>
+    </a>
+
+    <button class="bb-item has-popup" id="bbLangBtn" aria-label="Dil seçimi">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M2 12h20"></path>
+        <path d="M12 2a15.3 15.3 0 010 20a15.3 15.3 0 010-20z"></path>
+      </svg>
+      <div class="bb-lang-popup" id="bbLangPopup">
+        <a href="#" class="bb-lang"><img src="assets/flag-tr.webp" alt="TR"><span>TR</span></a>
+        <a href="#" class="bb-lang"><img src="assets/flag-en.png" alt="EN"><span>EN</span></a>
+      </div>
+    </button>
+
+    <button class="bb-center" id="bbMenuBtn" aria-label="Menüyü aç/kapat">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="bb-item has-popup" id="bbCallBtn" aria-label="Ara">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v2a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.63A2 2 0 014.11 1h2a2 2 0 012 1.72c.12.9.33 1.78.63 2.63a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l1.45-1.45a2 2 0 012.11-.45c.85.3 1.73.51 2.63.63A2 2 0 0122 16.92z"></path>
+      </svg>
+
+      <!-- İletişim Popup -->
+      <div class="bb-call-popup" id="bbCallPopup">
+        <a href="tel:+905555555555">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v2a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.63A2 2 0 014.11 1h2a2 2 0 012 1.72c.12.9.33 1.78.63 2.63a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l1.45-1.45a2 2 0 012.11-.45c.85.3 1.73.51 2.63.63A2 2 0 0122 16.92z"></path>
+          </svg>
+          Telefon Et
+        </a>
+        <a href="https://wa.me/905555555555">
+          <svg viewBox="0 0 32 32" width="18" height="18" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16.001 3.077c-7.19 0-13.023 5.833-13.023 13.023 0 2.296.597 4.538 1.729 6.515L3 29l6.63-1.694c1.91 1.041 4.06 1.59 6.371 1.59h.001c7.19 0 13.023-5.833 13.023-13.023s-5.833-13.023-13.023-13.023zm0 23.732h-.001c-2.061 0-4.073-.552-5.826-1.596l-.417-.247-3.938 1.006 1.052-3.843-.257-.394a10.65 10.65 0 01-1.667-5.742c0-5.882 4.787-10.669 10.668-10.669 2.85 0 5.529 1.111 7.546 3.128 2.017 2.017 3.126 4.696 3.125 7.546 0 5.882-4.787 10.668-10.685 10.668zm5.887-7.99c-.322-.161-1.907-.941-2.202-1.047-.295-.108-.51-.161-.725.161s-.831 1.048-1.019 1.265c-.187.215-.372.242-.694.081-.322-.161-1.36-.5-2.592-1.595-.957-.853-1.603-1.904-1.791-2.227-.187-.322-.02-.497.142-.657.146-.146.322-.372.483-.558.161-.187.215-.322.322-.537.108-.215.054-.403-.027-.564-.081-.161-.725-1.749-.993-2.397-.261-.627-.526-.543-.725-.553-.187-.01-.403-.012-.619-.012s-.564.081-.86.403c-.295.322-1.13 1.104-1.13 2.691s1.157 3.124 1.318 3.34c.161.215 2.279 3.482 5.53 4.879.773.334 1.376.533 1.846.682.775.247 1.48.212 2.037.129.621-.092 1.907-.778 2.176-1.528.268-.75.268-1.393.187-1.528-.08-.135-.295-.215-.616-.376z"/>
+          </svg>
+          WhatsApp
+        </a>
+        <a href="mailto:info@bilkur.com">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16v16H4z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          E-posta
+        </a>
+        <a href="#">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v2a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.63A2 2 0 014.11 1h2a2 2 0 012 1.72c.12.9.33 1.78.63 2.63a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l1.45-1.45a2 2 0 012.11-.45c.85.3 1.73.51 2.63.63A2 2 0 0122 16.92z"></path>
+          </svg>
+          İletişim Bilgileri
+        </a>
+      </div>
+    </div>
+
+    <a href="#" class="bb-item" aria-label="Hesabım">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21a8 8 0 10-16 0"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+      </svg>
+    </a>
+  </nav>
+
+  <!-- Full-screen Menu Overlay -->
+  <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+    <div class="menu-sheet">
+      <div class="menu-sheet-header">
+        <img src="assets/logo.png" alt="Bilkur">
+        <button class="menu-close" id="menuClose" aria-label="Kapat">×</button>
+      </div>
+      <ul class="menu-list">
+        <li><a href="index.html">Anasayfa</a></li>
+        <li class="menu-has-sub">
+          <button class="menu-accordion" type="button">Kurumsal <span>▾</span></button>
+          <ul class="menu-sub">
+            <li><a href="hakkimizda.html">Hakkımızda</a></li>
+            <li><a href="#">Kalite Politikamız</a></li>
+          </ul>          
+        </li>
+        <li><a href="urunler-kategori.html">Ürünlerimiz</a></li>
+        <li><a href="#">Kataloglar</a></li>
+        <li><a href="#">Galeri</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="iletisim.html">İletişim</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ÜRÜN DETAY -->
+<section class="urundetay section-shadow" aria-label="Ürün Detay">
+    <div class="urundetay-main-sec">
+      <h2 id="urundetay-wrap-title" class="urundetay-wrap-title">Ürün Detay</h2>
+      <div class="urundetay-wrap">
+        <!-- Sol taraf: görsel + küçük önizlemeler -->
+        <div class="urundetay-media">
+          <div class="urundetay-main">
+            <img id="urundetayMainImg" src="assets/1.webp" alt="Ürün görseli">
+          </div>
+
+          <div class="urundetay-thumbs" role="list">
+            <button class="urundetay-thumb is-active" data-src="assets/1.webp" aria-label="Görsel 1">
+              <img src="assets/1.webp" alt="">
+            </button>
+            <button class="urundetay-thumb" data-src="assets/2.webp" aria-label="Görsel 2">
+              <img src="assets/2.webp" alt="">
+            </button>
+            <button class="urundetay-thumb" data-src="assets/2.webp" aria-label="Görsel 3">
+              <img src="assets/2.webp" alt="">
+            </button>
+          </div>
+        </div>
+
+        <!-- Sağ taraf: başlık, metin, maddeler, butonlar -->
+        <div class="urundetay-content">
+          <h2 class="urundetay-title">Ürün Başlık Alanı</h2>
+
+          <p class="urundetay-lead">
+            <strong>SST Single Twist</strong> büküm makinesi, özel kablo ve tel üretim tesisleri için
+            vazgeçilmez, çok yönlü ve yüksek kaliteli bir kablo ve bükümlü tel üretim makinesidir.
+          </p>
+
+          <ul class="urundetay-list">
+            <li>Single Büküm Kolu tahrik sistemi ve makara sarma sistemi tahriki AC motorla tahrik edilir.</li>
+            <li>Travers grubu SERVO Motor–redüktör ile tahrik edilir.</li>
+            <li>Metraj ünitesinde ölçme kasnağının dönme hızı encoder ile sayılır.</li>
+            <li>Ayarlanan metraja gelinince komple sistem otomatik olarak durur.</li>
+          </ul>
+
+          <div class="urundetay-actions">
+            <a href="#" class="urundetay-btn urundetay-btn--ghost">
+              <span>Sertifikalar</span>
+              <i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>
+            </a>
+            <a href="siparis-formu.html" class="urundetay-btn urundetay-btn--ghost">
+              <span>Teklif Al</span>
+              <i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <div class="urundetay-contact">
+            veya doğrudan şu adrese bir e-posta gönderin:
+            <a href="mailto:marketing@sarmakina.com.tr">marketing@sarmakina.com.tr</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" aria-hidden="true" role="dialog" aria-label="Ürün görseli">
+  <button class="lb-close" id="lbClose" aria-label="Kapat">×</button>
+
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Önceki">
+    <i class="fas fa-chevron-left" aria-hidden="true"></i>
+  </button>
+
+  <div class="lb-stage">
+    <img id="lbImg" alt="Büyütülmüş ürün görseli">
+    <div class="lb-counter" id="lbCounter">1 / 3</div>
+  </div>
+
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Sonraki">
+    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+  </button>
+</div>
+
+
+<!-- ===== TEKNİK ÖZELLİKLER ===== -->
+<section class="specs-section">
+  <div class="specs-section-sec">
+  <h2 class="specs-title">Teknik Özellikler</h2>
+
+  <div class="specs-scroll" id="specsScroll">
+    <table class="specs-table" role="table" aria-label="Teknik Özellikler Karşılaştırma">
+      <thead>
+        <tr>
+          <th scope="col" colspan="2">SST 630 Single Twist Bükme Makinesi</th>
+          <th scope="col" >SST 800 Single Twist Bükme Makinesi</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th scope="row" colspan="3" class="prop">Teknik Özellikler</th>
+        </tr>
+
+        <tr>
+          <th scope="row" class="prop">Tip</th>
+          <td>SST630</td>
+          <td>SST 800</td>
+        </tr>
+        <tr>
+          <th scope="row" class="prop">Makara ölçüsü</th>
+          <td>630 mm</td>
+          <td>800 mm</td>
+        </tr>
+        <tr>
+          <th scope="row" class="prop">Max makara ağırlığı</th>
+          <td>600 Kg</td>
+          <td>800 Kg</td>
+        </tr>
+        <tr>
+          <th scope="row" class="prop">Max bow devri</th>
+          <td>1200 dev/dk</td>
+          <td>1000 dev/dk</td>
+        </tr>
+        <tr>
+          <th scope="row" class="prop">Max twist</th>
+          <td>1200 b/dk</td>
+          <td>1000 b/dk</td>
+        </tr>
+        <tr>
+          <th scope="row" class="prop">Hatve</th>
+          <td>6–100 mm</td>
+          <td>10–250 mm</td>
+        </tr>
+        <tr>
+          <th scope="row" class="prop">Max. Hat Hızı</th>
+          <td>300 m/dk</td>
+          <td>150 m/dk</td>
+        </tr>
+        <tr>
+          <th scope="row" class="prop">Ana Motor</th>
+          <td>51 kW (Kapalı Çevrim) motor frekans kontrollü</td>
+          <td>45 kW (Kapalı Çevrim) motor frekans kontrollü</td>
+        </tr>
+        <tr>
+          <th scope="row" class="prop">Sarıcı motor</th>
+          <td>37 kW (Kapalı Çevrim) motor (frekans kontrollü)</td>
+          <td>53 kW (Kapalı Çevrim) motor (frekans kontrollü)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- kaydırma ipucu gölgeleri -->
+    <div class="scroll-fade left"></div>
+    <div class="scroll-fade right"></div>
+  </div>
+  </div>
+</section>
+
+
+    <!-- ===== DİĞER ÜRÜNLER BÖLÜMÜ ===== -->
+  <section class="opx-main">
+    <main class="opx-main">
+      <!-- Split Line -->
+
+      <section class="opx-news">
+        <div class="opx-container">
+          <div class="opx-wrapper opx-wrapper--news">
+            
+            <div class="opx-top-field">
+              <div class="opx-carousel-ctrl">
+                <div class="opx-carousel-nav">
+                  <div class="opx-nav-btn opx-prev-btn" id="news-prev">
+                    <div class="opx-nav-icon">
+                      <svg viewBox="0 0 71.5 71.5">
+                        <circle class="opx-main-circle" cx="35.75" cy="35.75" r="35"></circle>
+                        <circle class="opx-fillable" cx="35.75" cy="35.75" r="35"></circle>
+                      </svg>
+                      <i class="fas fa-chevron-left"></i>
+                    </div>
+                  </div>
+
+                  <div class="opx-title-field">
+                    <h3 class="opx-news-title">Diğer Ürünler</h3>
+                  </div>
+
+                  <div class="opx-nav-btn opx-next-btn" id="news-next">
+                    <div class="opx-nav-icon">
+                      <svg viewBox="0 0 71.5 71.5">
+                        <circle class="opx-main-circle" cx="35.75" cy="35.75" r="35"></circle>
+                        <circle class="opx-fillable" cx="35.75" cy="35.75" r="35"></circle>
+                      </svg>
+                      <i class="fas fa-chevron-right"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ürün Kartları Carousel -->
+            <div class="opx-products-carousel" id="news-carousel">
+              
+              <!-- Ürün 1 -->
+              <div class="opx-product-card">
+                <div class="opx-product-image">
+                  <img src="assets/SCS-315-Statik.webp" alt="Twist Büküm Makinesi">
+                </div>
+                <div class="opx-product-content">
+                  <div class="opx-product-category">BÜKÜM MAKİNELERİ</div>
+                  <h3 class="opx-product-title">SBM Double Twist Büküm Makinesi</h3>
+                </div>
+                <button class="opx-product-btn" aria-label="Ürünü görüntüle">
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+
+              <!-- Ürün 2 -->
+              <div class="opx-product-card">
+                <div class="opx-product-image">
+                  <img src="assets/SDT-800-Cable.webp" alt="SDT Double Twist Büküm Makinesi">
+                </div>
+                <div class="opx-product-content">
+                  <div class="opx-product-category">BÜKÜM MAKİNELERİ</div>
+                  <h3 class="opx-product-title">SDT Double Twist Büküm Makinesi</h3>
+                </div>
+                <button class="opx-product-btn" aria-label="Ürünü görüntüle">
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+
+              <!-- Ürün 3 -->
+              <div class="opx-product-card">
+                <div class="opx-product-image">
+                  <img src="assets/SCMPK-Kule-1.webp" alt="SCMPK Kule Tipi Tel Çözücü">
+                </div>
+                <div class="opx-product-content">
+                  <div class="opx-product-category">ÇÖZÜCÜLER</div>
+                  <h3 class="opx-product-title">SCMPK Kule Tipi Tel Çözücü</h3>
+                  <div class="opx-product-subtitle">Müşteri talebine göre pay-off 600 mm kadar hat hızı ile üretilebilir.</div>
+                </div>
+                <button class="opx-product-btn" aria-label="Ürünü görüntüle">
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+
+              <!-- Ürün 4 -->
+              <div class="opx-product-card">
+                <div class="opx-product-image">
+                  <img src="assets/SCMPK-Compact-.webp" alt="SCMPK Compact Çözücü">
+                </div>
+                <div class="opx-product-content">
+                  <div class="opx-product-category">ÇÖZÜCÜLER</div>
+                  <h3 class="opx-product-title">SCMPK Compact Çözücü</h3>
+                </div>
+                <button class="opx-product-btn" aria-label="Ürünü görüntüle">
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+
+              <!-- Ürün 5 - Örnek ek ürün -->
+              <div class="opx-product-card">
+                <div class="opx-product-image">
+                  <img src="assets/1.webp" alt="Başka Makine">
+                </div>
+                <div class="opx-product-content">
+                  <div class="opx-product-category">DİĞER MAKİNELER</div>
+                  <h3 class="opx-product-title">Örnek Makine 5</h3>
+                </div>
+                <button class="opx-product-btn" aria-label="Ürünü görüntüle">
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+
+              <!-- Ürün 6 - Örnek ek ürün -->
+              <div class="opx-product-card">
+                <div class="opx-product-image">
+                  <img src="assets/2.webp" alt="Başka Makine">
+                </div>
+                <div class="opx-product-content">
+                  <div class="opx-product-category">DİĞER MAKİNELER</div>
+                  <h3 class="opx-product-title">Örnek Makine 6</h3>
+                </div>
+                <button class="opx-product-btn" aria-label="Ürünü görüntüle">
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-card">
+        
+        <!-- Footer Logo -->
+        <div class="footer-notch">
+          <img src="assets/logo-f.png" alt="logo">
+        </div>
+        
+        <div class="footer-wrap">
+          <!-- Footer İçerik -->
+          <div class="footer-left">
+            
+            <!-- Ürünler Bölümü -->
+            <div class="footer-products">
+              <div class="footer-col footer-col--products">
+                <div class="footer-product-sec">
+                  <div class="footer-product-text">
+                    <h4 class="footer-title">Ürünler</h4>
+                    <ul class="footer-menu">
+                      <li><a href="#">Ürün Adı</a></li>
+                      <li><a href="#">Tarım Tuzu</a></li>
+                      <li><a href="#">Hayvansal Tuz</a></li>
+                      <li><a href="#">Ürün Adı Buraya</a></li>
+                    </ul>
+                  </div>
+                  <div class="footer-product-text">
+                    <h4 class="footer-title">Ürünler</h4>
+                    <ul class="footer-menu">
+                      <li><a href="#">Ürün Adı</a></li>
+                      <li><a href="#">Tarım Tuzu</a></li>
+                      <li><a href="#">Hayvansal Tuz</a></li>
+                      <li><a href="#">Ürün Adı Buraya</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- Telif ve Yasal Linkler -->
+                <div class="footer-legal">
+                  <p class="copyright">Copyright © 2025 bilkurtuz.com</p>
+                  <div class="legal-links">
+                    <a href="/kvkk" class="chip">KVKK</a>
+                    <a href="/cerez-politikasi" class="chip">Çerez Politikası</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sosyal Medya -->
+            <div class="footer-social">
+              <div class="social-icons">
+                <a href="#" class="social-link" aria-label="Instagram">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="Facebook">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="LinkedIn">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Harita ve İletişim -->
+            <div class="footer-col footer-col--map">
+              <div class="map-card">
+                <iframe
+                  src="https://www.google.com/maps?q=Bilkur%20Madencilik&output=embed"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  aria-label="Harita">
+                </iframe>
+
+                <!-- İletişim Bilgileri -->
+                <div class="map-info">
+                  <div class="row">
+                    <span class="ico"><i class="fas fa-phone"></i></span>
+                    <a href="tel:+903843333333">+90 (384) 333 33 33</a>
+                  </div>
+                  <div class="row">
+                    <span class="ico"><i class="fas fa-envelope"></i></span>
+                    <a href="mailto:info@bilkurtuz.com.tr">info@bilkurtuz.com.tr</a>
+                  </div>
+                  <div class="row">
+                    <span class="ico"><i class="fas fa-map-marker-alt"></i></span>
+                    Adres Alanı buraya gelecek
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer Bottom -->
+          <div class="footer-bottom">
+            <div class="footer-bottom-wrap">
+              <div class="copyright-bottom">
+                © <a href="#">Copyright</a> 2025
+                <a href="#">Bilkur Madencilik</a> Tüm Hakları Saklıdır.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script src="js/script.js"></script>
+</body>
+</html>
